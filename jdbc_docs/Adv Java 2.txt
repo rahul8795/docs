@@ -1,0 +1,561 @@
+JDBC:
+----------
+Storage Area:
+--------------
+There are two types of storage area.
+1. TSA (Temporary Storage Area)
+2. PSA (Permanent Storage Area)
+
+1.TSA
+---------
+Buffers and Java objects are example of TSA.
+
+2.PSA
+---------
+There are three types of PSA.
+1. File Systems
+----------------
+Drawbacks:
+-----------
+a) Platform dependent
+b) Less Data
+c) Less Security
+d) More Data Redundency
+e) No query language support
+
+
+2. DBMS
+----------
+Drawbacks:
+-------------
+a) Less data(Comapre with to DW)
+b) Good for insert,update,delete
+c) Not good for select operations
+
+
+
+3. Data Warehousing
+--------------------
+Advantage:
+----------------
+a) More data
+b) fast retrieval mechanism in the form of data mining technology
+
+
+Q)What are the differences between Database and Database Management Systems?
+----------------------------------------------------------------------------
+Ans:
+----
+1. Database is a Memory block to store data.
+   DBMS is a software system, it able to manage the data by storing it on Database
+   and by retrieving it from Databases.
+2. Database is collection of inter realated data.
+   DBMS is collection of interrelated data and set of programs.
+
+
+Types of DBMS:
+---------------
+1. RDBMS
+----------
+--> Manage data with the table
+--> Use SQL for manipulation of data
+
+2. OODBMS(obejct oriented DBMS)
+--------------------------------
+--> Data availble in the form of objects
+--> Use OQL for manipulation of data
+
+
+3. ORDBMS(Object Realted DBMS)
+-----------------------------------
+--> Data available in the form of objects and tables 
+--> Use SQL3 (SQL+OQL) for manipulation of data
+
+
+
+Query processing System:
+-------------------------
+In query processing system, Database engine perform :
+1. Query Tokenization
+2. Query Parsing
+3. Query Optimaization
+4. Query Execution 
+
+*************************************************************
+
+JDBC
+-------------
+1. JDBC is a step by step procedure to interect with database from java applications 
+    inorder to perform database operation from java applications.
+2. JDBC is a technology, not a programming language, it can be used to connect with
+    database from java applications inorder to perform database operations from jav applications.
+Note: Programming language is core java but technology is set of liabrary developed by java programming.
+Technology : JDBC,SERVLET
+3. JDBC is an API, it will provide vary good envoirnment to interact with database from java application inorder
+    tp perform database operations from java applications.
+Note: API - collections of packages(classes+interfaces)
+4. JDBC is an abstraction provided by SUN Micorsystems and implemented by all the database vendors
+    inorder to perform database operations from java applications.
+
+Note:
+a)  To perform database operations, we need database engine. DBE is handle by QLAPI.
+b)  Java Application run by JVM and JVM is handle by JAVA API.
+c) Tranlator ( Driver) is required to translate JAVA API to QLAPI
+
+Driver : Driver is an Interface exited between Java application and Database, it will provide mapping
+    between Java API representations with Query Language API representations and vice versa.
+
+Q) Interecting with the database from java applications who is  required ?
+ans:
+------
+Java developers required, not database vendors
+
+java.sql.Driver 
+
+Note: Each database has its own drive
+1. Type-1 Driver
+2. Type-2 Driver
+3. Type-3 Driver
+4. Type-4 Driver
+5. Type-5 Dirver
+
+1. Type-1 Driver
+--------------------------
+-->  
+--> Type-1 driver is a reference implementation or a model implemetation for java.sql.Driver 
+      interface inorder to prepare Driver implementation by all the Database vendors.
+--> Type-1 driver was provided by SUN Microsystem in the form of "sun.jdbc.odbc.JdbcOdbcDriver" 
+     in the same java software as an implementation class to Driver Inteface.
+--> Java has managed Type-1 driver class upto to its JDK1.7 version, from JAVA8 version
+     onwards, JAVA has removed Type-1 driver from Java Software.
+--> Type-1 driver class was provided by SUN Microsystems with interdependedency
+     on the MIcrosoft product ODBC driver.
+--> ODBC[Open Database Connectivity] is driver provided by microsoft on the basis its native implementations and it
+     will provide very good envoirnment to connect with any type of database from Type-1 driver.
+--> If we want to use Type-1 driver in JDBC applications then we must install ODBC
+     driver in out system.
+--> ODBC is very much compatible with microsoft products, so Type-1 driver is
+     very much compatible with MIcrosoft products only, so that, its protability will 
+     be very less.
+-->  Type-1 driver is slower driver, because, it require two conversions inorder to connect with database
+      from java application.
+--> It will reduce Jdbc application performance.
+--> It is suitable for simple JDBC applications only, it is not suitable for comolex JDBC application requirments.
+--> Type-1 driver is suggestable for Standalone Applications and it is not suggestable
+     for web applications and distributed applications.
+
+
+2. Type-2 Driver
+----------------------------------
+--> Type-2 driver is also called as Part Java and Part Native Driver or simply
+     Native Driver, because, It was prepared on the basis of Java implementations
+     and the database vendor provided native implementations.
+--> In Jdbc applications, if we want to use Type-2 driver then we must install the 
+     Database Vendor provided native library.
+--> Type-2 driver is more portable driver when compared with Type-1 driver,
+      because,it is not dependent on the MIcrosoft product ODBC Driver.
+--> Type-2 driver is faster driver when compared with Type-1, because, it should not require two times conversions 
+     inorder to interact with database from java applications.
+--> It is costfull driver.
+--> It is not suggestable for web applications and distributed applications.
+--> It is suggestable for Standalone applications.
+
+3. Type-3 Driver
+---------------------------------------
+--> It is also called as "middleware database server access driver" or simple "network driver".
+--> This driver is exclusivily for network applications, that is, web applications and distributed applications.
+--> It is not for  standalone applications.
+--> If we want to use this driver in JDBC applications then we must start application server.
+--> Type-3 driver is more portable driver when compared with Type-1 and Type-2 drivers, because, Type-3 driver 
+      does not required ODBC driver provided by Microsoft, it does not required database vendor provided native library.
+--> Type-3 driver will provide very good environment to interact with multiple databases from multiple java applications.
+--> It is not applcable for standalone applications.
+--> Type-3 dirver is faster driver when compared with Type-1 and Type-2 driver, because, it does not required two conversions
+     to connect with database and it does not required to load database vendor provided native library.
+--> It will improve JDBC applications performance when compared with Type-1 and Type-2 drivers.
+
+4. Type-4 Driver
+---------------------------------------
+--> Type-4 driver is also called as pure java driver or simply"Thin" Driver. It was designed on the 
+     basis of java implementations.
+--> Type-4 driver is applicable for both standalon applications and distributed applications.
+--> Type-4 driver is more portable driver when compared with Type-1, Type-2, and Type-3 driver.
+--> Type-4 driver is faster driver when compaed with Type-1, Type-2 and Type-3 driver.
+--> Type-4 driver is frequently used driver in JDBC applications.
+--> Type-4 driver is light weight driver.
+--> Type-4 driver is economical driver.
+--> Type-4 driver will improve JDBC applications performance when compared with Type-1, Type-2 and Type-3 drivers.
+
+---------------------------------------------------------------------------------------
+
+Steps to prepare First JDBC Application:
+------------------------------------------------------------------
+1. Load and Register Driver
+-----------------------------------------------
+1.
+ set classpath=C:\oraclexe\app\oracle\product\11.2.0\server\jdbc\lib\ojdbc6.jar
+
+ set classpath=C:\Program Files (x86)\MySQL\Connector J 8.0\mysql-connector-java-8.0.15.jar
+
+public static Class forName(String className)throws ClassNotFoundException
+Ex: Class c = Class.forName("sun.jdbc.odbc.JdbcOdbcDriver"); Type-1 driver
+      Class c = Class.forName("oracle.jdbc.OracleDriver");
+      Class c = Class.forName("com.mysql.cj.jdbc.Driver");
+
+DriverManager.registerDriver(--);
+
+
+public class DriverManager{ //SUN
+  ------------
+  public static void registerDriver(){
+  --------------------
+  }
+}
+public interface Driver{//SUN
+-------
+
+}
+
+
+pulbic class OracleDriver implements Driver{//Oracle
+----------
+  static{
+      DriverManager.registerDriver();
+   }
+-----------
+}
+
+class JdbcApp{
+ public static void main(Stirng[] args){
+    Class.forName("OracleDriver");
+ }
+}
+
+
+Type-1 driver, JDBC3.0 and above, that is, JAVA6 version and above tehn load and 
+register driver step is optional
+
+Type-4 driver provided by Oracle, Oracle11g/11xe version and above then Lpa and register 
+driver step is optional
+
+Type-4 driver provided by MySQL, MySQL5.5 version and above then Load
+and register driver step is optional
+
+In the above optional cases, it is not required to write Class.forName(--) method,
+where driver will be loaded at the time of establish the connection between java
+application and database.
+
+
+java.sql and javax.sql 
+
+Driver [I]
+DriverManager [C]
+Connection [I]
+Statement [I]
+PreparedStatment [I]
+CallableStatement [I]
+ResultSet [I]
+--------
+--------
+
+
+DataSource
+RowSet
+PooledConnection
+-------
+------
+
+2. Establish Connection between Java Application and database.
+------------------------------------------------------------------------------------------------ 
+publci static Connection getConnection(String driverURL, String db_User_Name, String db_Password)throws SQLException
+
+Main_Protocol_Name: Sub_Protocol_Name: DB_Name
+
+Where Main_Protocol_Name is fixed that is "jdbc".
+
+Type-1 driver By SUN:
+Diver Class: sun.jdbc.odbc.JdbcOdbcDriver
+Driver URL: jdbc:odbc:nag
+
+Type-4 Driver By Oracle:
+Driver Class : oracle.jdbc.OracleDriver
+Driver URL:  jdbc:oracle:thin:@localhost:1521:xe
+
+Type-4 Driver provided By MySQL:
+Driver Class: com.mysql.cj.jdbc.Driver
+Driver URL : jdbc:mysql://localhost:3300/dbName
+
+
+Conenction con = DriverManager.getConnection("jdbc:odbc:nag","system", "durga");
+Connection con = DriverManager.getConnection("jdbc:oracle:thin"@localhost:1521:xe", "system", "durga");
+Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3300/durgadb", "root", "root"); 
+
+Q)In general, in java applicaton, we are unable to create objects for interfaces, but, how it is possible 
+  for  getConnection() method to create object for Connection interface and to return that Connection object?
+--------------------------------------------------------------------------------------------------------------
+Ans:
+-----
+In Jdbc, getConnection() is not creating object for Connection Interface, where
+getConnection() method is creating object for the implementation class of 
+Connection interface which is provided by the Database vendors as part of JDBC
+abstraction implementation.
+
+public inteface Conenction{//SUN
+	-----------
+
+}
+
+public class OracleConnection implements Connection{// Oracle
+	_______________
+}
+
+public class DriverManager{
+	---------------
+ 	public static Connection getConnetion(String url, String uname, String pwd)
+	throws SQLExcption{
+		---------
+		connect(-----);
+		----------
+		Connection con = new OracleConnection();
+		return con;
+	}
+}
+
+public class JdbcApp{
+	public static void main(String[] args){
+		----------
+		Connection con = DriverManager.getCOnnection("---","---","---");
+	}
+}
+
+3. Create either Statement or PrepaeStatement or CallableStatemetn as per the requirement.
+--------------------------------------------------------------------------------------------
+To write and execute sql queried in Jdbc applicaios we need some predefined
+library which we provided by JDBC API, where JDBC API has provided the predefined
+library in the form of three interfaces.
+
+1. Statement
+2. PreparedStatement'
+3. CallableStatement
+
+Q)What is the difference between Statement, PreparedStatement and CallableStatement?
+-----------------------------------------------------------------------------------------
+Ans:
+------
+In Jdbc applicaitons, when we want to execute all the SQL queries individually there
+we will use 'Statement'.
+
+In Jdbc applications, when we want to execute the same SQL query in the next sequence
+there to improve application performance of jdbc applications we will use "PreparedStatement".
+
+In Jdbc applicaitons, when we want to access stored procedures and functions which 
+are available at database from java applicaiton there we will use "CallableStatement".
+
+To create Statement object in jdbc applications we will use the following method from
+java.sql.Connection;
+
+public Statement createStatement()throws SQLException
+Ex. Statement st = con.createStatement();
+
+Q)In jdbc, statement is an inteface, for which we are unable to create objects, but
+, how it is possible for createStatement() method to return Statement object?
+-------------------------------------------------------------------------------------
+Ans:
+------
+In jdbc applications, createStatement() method is not creating object for Statement 
+interface, it is creating object for the implementation class of Statement interface 
+and createStatement() method will return that implementation class object only.
+
+public interface Statement{//SUN
+	-----
+}
+
+public class OracleStatement implements Statement{//Oracle
+	-----------
+}
+
+public interface Connection{//SUN
+	-----------
+	public Statement createStatement()throws SQLException;
+	-------------
+}
+
+public class OracleConnection implemetaions Connection{//Oracle
+	----------
+	public Statement createStatement() throws SQLException{
+		--------
+		Statement st = new OracleStatement();
+		----------------
+		return st;
+	}
+	----------
+}
+
+public class JdbcApp{
+	public static vod main(String[] args){
+		----------
+		Statement st = con.createStatement();
+		--------
+	}
+}
+
+
+
+
+4. Write and Execute SQL Queries.
+-----------------------------------
+In jdbc application, to write and execute SQL Queries, Statement has
+provided the following predefined methods. 
+
+1. executeQuery(----)
+2. executeUpdate(----)
+3. execute(---)
+
+Q)What is the difference between executeQuery(), executeUpdate() and execute()
+method?
+Ans:
+-----
+Note: select Sql queries and non select sql queries
+
+public ResultSet executeQuery(String sql)throws SQLException
+--> It will execute select sql queries inorder to fetch
+    data from database table.
+
+public int executeUpdate(String sql_query)throws SQLException
+--> It will execute non select sql queries inorder to perform the 
+database like create table, insert records, update records,delete 
+records,.....
+
+public boolean execute(String sql_Query)throws SQLException
+--> It can be used to execute select and non select sql queries.
+    It will return true value when we execute select sql query.
+    It will return false value when we execute non select sql query.
+
+a) ResultSet rs = st.executeQuery("select * from emp1");
+
+b) int rowCount = st.executeUpdate("update emp1 set esal = esal + 500 where esal < 10000");
+ 
+c) 1: boolean b1 = st.execute("select *from emp1");
+sopln(b1); OP: true
+
+2: boolean b2 = st.execute("update emp1 set esal = esal + 500 where esal < 10000");
+sopln(b2); OP: false
+
+
+5. Close the resources like Connections, Statement,.......
+------------------------------------------------------------
+At the end of jdbc applications, it is convention to close the resources like
+Connection, Statement, ResultSet,..... inorder to avoid security problems.
+
+public void close()throws SQLException
+Ex.
+-----
+rs.close();
+st.close();
+con.close();
+-----
+-----
+
+
+Steps to prepare application:
+-----------------------------
+1. Download and Install Oracle Software.
+2. Download and Install Java Software.
+3. Download and Install Eclipse IDE.
+4. Create Java Project in Eclipse IDE.
+5. Create main class in Java Project.
+6. In main() method provide JDBC Applicaiton Logic.
+7. Run JDBC Application
+
+create table emp1(ENO number(3) primary key, ENAME varchar2(10), ESAL float(5), EADDR varchar2(10));
+
+tname = "emp1";
+
+String query = "create table "+tname+"(ENO number(3) primary key,
+ ENAME varchar2(10), ESAL float(5),EADDR varchar2(10))";
+
+
+Example 1: Type-1 Driver
+--------------
+package com.cognizant.jdbcdemo;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+
+public class JdbcApp01 {
+
+	public static void main(String[] args) throws Exception {
+		// Load and register driver
+		Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+		
+		//Establish Connection between Java Application and Database
+		Connection con = DriverManager.getConnection("jdbc:odbc:nag","system","rahul");
+		
+		//Create statement
+		Statement st = con.createStatement();
+		
+		// Create BufferedReader and Take Table name as dynamic input
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("Table Name  :" );
+		String tname = br.readLine();
+		
+		// Write and Execute SQL Query
+		String query = "create table "+tname+"(ENO number(3) primary key,ENAME varchar2(10), ESAL float(5),EADDR varchar2(10))";
+		st.executeUpdate(query);
+		System.out.println("Table "+tname+" Created Successfully");
+		
+		
+		//Close the resources
+		con.close();
+		st.close();
+	}
+
+}
+
+Type-4 driver provided by Oracle
+
+Driver Class: oracle.jdbc.OracleDriver[Oracle9i onwards]
+	      oracle.jdbc.driver.OracleDriver[Deprecated, uoto oracle9i]
+
+Driver URL: jdbc:oracle:thin:@localhost:1521:xe [Oracle10XE/11xe]
+	    jdbc:oracle:thin:@localhost:1521:ORCL [Oracle10g/11g]
+
+To use OracleDriver in our applications we have to set classpath envoirnment variable
+to the location where Driver class is exited.
+
+set classpath = C:\oraclexe\app\oracle\product\11.2.0\server\jdbc\lib\ojdbc6.jar
+
+If we use Eclipse IDE then add ojdbc6.jar file to project library.
+
+Example :
+package jdbcDemo1;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+
+public class JdbcApp02 {
+
+	public static void main(String[] args)throws Exception {
+		Class.forName("oracle.jdbc.OracleDriver");
+		Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","root");
+		Statement st = con.createStatement();
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("Table Name : ");
+		String tname = br.readLine();
+		String query = "create table "+tname+"(ENO number(3) primary key,ENAME varchar2(10), ESAL float(5),EADDR varchar2(10))";
+		st.executeUpdate(query);
+		System.out.println("Table "+tname+" Created Successfully");
+		con.close();
+		st.close();
+				
+	}
+
+}
+
+-----------------------------------------
