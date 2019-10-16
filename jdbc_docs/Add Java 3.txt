@@ -192,3 +192,261 @@ public class JdbcApp05 {
 
 }
 
+-------------------------------------------------------------
+Q) How to delete record from database from java application?
+Ans:
+-------
+package com.cognizant.jdbc;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+
+public class JdbcApp06 {
+
+	public static void main(String[] args) {
+		Connection con = null;
+		Statement st = null;
+		BufferedReader br = null;
+		try{
+			Class.forName("oracle.jdbc.OracleDriver");
+			con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","root");
+			st = con.createStatement();
+			br = new BufferedReader(new InputStreamReader(System.in));
+			System.out.println("Salary Range : ");
+			float sal_Range = Float.parseFloat(br.readLine());
+			int rowCount = st.executeUpdate("delete from emp2 where esal < "+sal_Range);
+			System.out.println("Record Deleted : "+rowCount);
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			try {
+				br.close();
+				st.close();
+				con.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+}
+
+-----------------------------------
+Q)
+
+public int executeUpdate(String query)throws SQLException
+
+Two types of SQL queries exited:
+1. DML --> insert, update, delete
+2. DDL --> create, alter, drop
+
+int rowCount = st.executeUpdate("Insert...");
+SOPLN(rowCount);// OP: 1
+
+int rowCount = st.executeUpdate("Update....");
+Sopln(rowCount); // OP : 10
+
+int rowCount = st.executeUpdate("delete...");
+Sopln(rowCOunt); // OP : 15
+
+int rowCount = st.executeUpdate("create...");
+Sopln(rowCount);
+int rowCount = st.executeUpdate("alter...");
+Sopln(rowCount);
+int rowCount = st.executeUpdate("drop...");
+Sopln(rowCount);
+
+
+Example:
+take java7 project for type-1 driver example
+------------------
+package com.cognizant.jdbc;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+
+public class JdbcApp06 {
+
+	public static void main(String[] args) {
+		Connection con = null;
+		Statement st = null;
+		BufferedReader br = null;
+		try{
+			Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+			con = DriverManager.getConnection("jdbc:odbc:nag","system","root");
+			st = con.createStatement();
+		        int rowCount1 = st.executeUpdate("craete table emp1(eno number(5),ename varchar2(10)");
+                        int rowCount2 = st.executeUpdate("drop table emp1");
+			sopln(rowCount1);
+			sopln(rowCount2);
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			try {
+				br.close();
+				st.close();
+				con.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+}
+
+output: -1
+	-1
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+package com.cognizant.jdbc;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+
+public class JdbcApp08 {
+
+	public static void main(String[] args) {
+		Connection con = null;
+		Statement st = null;
+		try{
+			Class.forName("oracle.jdbc.OracleDriver");
+			con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","root");
+			st = con.createStatement();
+			int rowCount1 = st.executeUpdate("create table emp3(eno number(5),ename varchar2(10))");
+            int rowCount2 = st.executeUpdate("drop table emp3");
+            System.out.println(rowCount1);
+            System.out.println(rowCount2);
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			try {
+				st.close();
+				con.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+}
+
+Output: 0
+	0
+
+Note: The value of executeUpdate() method is depend on the driver version which we are using.
+
+
+ResultSet:
+--------------
+ResultSet is an object in JDBC, it able to store the fetched data from database
+while executing select sql query in Jdbc Application.
+
+
+For every record
+1. Check whether next record is exited or not from current cursor posotion, if
+   next record is exited then move cursor to the next record position.
+	public boolean next()throws SQLException
+	--> if next record is available then it will return true value.
+	--> If next record is not avaolable then it will return false value.
+2. After moving cursor to the next record posotion read data from the columns 
+   individually.
+	public xxx getXxx(int colIndex/String colName)throws SQLException
+	xxx --> Byte, Short, int, ........
+
+public boolean execute(String query)throws SQLException
+boolean b = st.execute("Select *from emp1");
+Sopn(b);// OP: true
+
+public ResultSet getResultSet()throws SQLException
+Ex. ResultSet rs = st.getResultSet(); 
+
+
+boolean b = st.execute("update emp2 set esal = esal + 500 where esal < 10000");
+Sopln(b); // OP : false
+
+public int getUpdateCount()throws SQLException
+Ex. int rowCount = st.getUpdateCount();
+
+In jdbc application, we will use execute() method to execute dynamic sql queries
+which are enterd by the users at runtime.
+
+Q)In Jdbc application, we will use excute update to execute not select sql queries
+, in case, if we execute select sql query by using executeUpdate() method then what
+will be the result in JDBC Applications?
+--------------------------------------------------------------------------------
+Ans:
+-----
+int rowCount = st.executeUpdate("select *from emp2");
+
+Type-1 driver, JVM will raise an exception like
+	java.sql.SQLException: No row count was produced
+
+Type-4 driver, JVM will not raise any exception, but, executeUpdate() will return
+an integr value which is equals to the no of records which are exited in the generated
+ResultSet.
+
+Type-1 Example :
+
+package com.cognizant.jdbc;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class JdbcApp12 {
+
+	public static void main(String[] args) {
+		Connection con = null;
+		Statement st = null;
+		ResultSet rs = null;
+		try{
+			Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+			con = DriverManager.getConnection("jdbc:odbc:nag","system","root");
+			st = con.createStatement();
+			int rowCount = st.executeUpdate("select *from emp2");
+		}catch(Exception e){
+			e.printStackTrace();
+			try{
+				rs = st.getResultSet();
+				System.out.println("ENO\tENAME\tESAL\tEADDR");
+				System.out.println("------------------------------");
+				while(rs.next()){
+					System.out.println(rs.getInt("eno"));
+					System.out.println(rs.getString("ename"));
+					System.out.println(rs.getFloat("esal"));
+					System.out.println(rs.getString("eaddr"));
+				}
+			}catch(Exception ex){
+				ex.printStackTrace();
+			}
+		}finally{
+			try {
+				rs.close();
+				st.close();
+				con.close();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+
+	}
+
+}
+
+
+
