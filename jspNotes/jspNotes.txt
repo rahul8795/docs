@@ -1,0 +1,269 @@
+JSP(Java Server Page)
+---------
+
+
+1. Introduction
+2. JSP Lifecycle
+3. JSP Directivitites
+	JSP Page Directive
+	JSP include Directive
+	JSP Taglib Directive
+4. JSP Scripting Elements
+	Declarations
+	Scriptlets
+	Expressions
+5. Implicit Objects
+6. JSP Scopes
+	Page Scopes
+	Request Scope
+	Application Scope
+	Session Scope
+7. JSP Actions
+	1. Standard Actions
+	2. Custom Actions
+8. Action Tags
+	<jsp:useBean>
+	<jsp:setPropert>
+	<jsp:getProperty>
+	<jsp:include>
+	<jsp:forward>
+	<jsp:param>
+	<jsp:plugin>
+	<jsp:fallback>
+	<jsp:params>
+	<jsp:declaration>
+	<jsp:scriptlet>
+	<jsp:expression>
+	------
+	------
+9. Custom Tags
+	Classic Tags
+	Simple Tags
+-----------------------------------------
+JSTL(JavaServer Pages Standard Tag Library)
+--------------------------------------------
+1. Introduction
+2. Core Tags
+3. XML Tags
+4. SQL Tags
+5. Foramtted Tags
+6. Functions Tags
+
+-----------------------------
+Expression Language:
+-------------------
+1. Introduction
+2. EL Implicit Objects
+3. EL Functions
+----------------------------------------------------
+
+--------------------------
+JSP(Java Server Page)
+--------------------------
+
+
+1. Introduction
+-----------------
+Java:
+-------
+1. Standalone Application
+--> If we design and execute any applicaiton without using Client-Server Architecutre
+or without distributing applicaiton logic over Multiple Machines then that applications 
+is called as Standalone Application.
+Ex.
+2. Distributed Application
+--> If we design and execute any applicaiton on the basis of Client-Server Architecutre
+or by distributing applicaiton logic over Multiple Machines then that applications 
+is called as Distribured Application.
+There are two types of Distributed Applications:
+	1. Web Based Distributed Applications
+	2. Remote Distributed Applications
+
+1. Web Based Distributed Applications
+-----------------------------------------
+To prepare web applications we need a set of technology called as web technology.
+EX: CGI(Common Gateway Interface), Servlets, JSPs
+
+There are two types of responses form server side applications:
+1. Static Response
+2. Dynamic Response
+
+1. Static Response
+--------------------
+If we generate response from server without executing any resource or without 
+performing any action at server then that response is called as Static Response.
+
+2. Dynamic Response
+---------------------
+If we generate response from server by executing a particular resource or by
+performing a particular action at server then that response is called as Dynamic
+response.
+
+The main intention of CGI, Sevlets, JSPs,.... to preapare web applicaiton inorder
+to generate dynamic response from Server.
+
+Q)To prepare web applications we have already CGI then what is the requirement to 
+use Servlets?
+-------------------------------------------------------------------------------------
+CGI is a server side technology, it was designed on the basis of C programming language and Scripting.
+C programming language is a process of programming language, so that, CGI is also a process based technology.
+
+Problem with Process based Programming(CGI):
+It is heavy weigth process.
+
+Servlet is a server side tech, it was designed on the basis of JAVA PL, where JAVA
+is Thrred based PL, so that, Servlet is also Thread based Server side tech.
+
+
+Q)What are the differences between Servlets and JSPs?
+--------------------------------------------------------
+Ans:
+1. If we want to prepare web applications by using Servlets then we must have very 
+   good awareness on JAVA.
+
+   If we want to preapare web applications by using JSP tech then it is not at all
+   required to java awareness, but we need to have presentation skills, just it is 
+   sufficient to have knowledge on html tags.
+
+Note: The main intention of JSP tech is to reduce Java code as much as possible.
+
+2. In web appications, Servlets are utilized to take the requests from clients and 
+   to process the requests.
+ 
+   In web applications, JSP pages are utilized to generate dynamic response to the 
+   client with very good look and feel.
+
+3. In web applications, Servlets are utilized mainly for processing.
+   In web applications, JSPs are mainly for presentation.
+
+4. In MVC based web applications, we will use a Servlet as Controller.
+   In MVC based web applicaitons, we will use a set of JSP pages as View part.
+
+Note1: Struts is MVC based web Framework, where ActionServlet is acting as 
+Controller and a set of JSP pages are acting as View part.
+
+Note2. JSF is MVC based web Framework,  where FacesServlet is acting as Controller
+and a set of JSP pages are acting as View part.
+
+Note3. Spring WEB MVC is MVC based web Framework, where DispatcherServlet is acting
+as Controller and a set of JSPs pages are acting as View Part.
+
+5. If we perform Modifications over the existed Servlet then it is mandatory to re
+recompile Servlet and it is mandatory to reload that Servelet into Server.
+
+If we perform modifications over the existed JSP pages then it is not required to 
+recompile and reload to the Server, jsut, refresh browser is sufficient to get updations.
+------------------------------------------------------------------------------------------
+
+JSP is a server side tech, it was designed on the top of Servlet API and J2SE API.
+
+In web applications, JSP pages are running on the top of Servlets. When we submit 
+reqest from client to JSP page then container will convert the provided JSP to a 
+Servlet internally, Container will generate response by executing the tanslated 
+Servlet.
+
+In web applications directory structer, we are able to provide JSP pages at any
+locaiton like under application folder, under WEB-INF folder and under classes
+folder, but, always, it is suggestible to keep JSP pages under application folder.
+
+If we provide JSP pages under application folder then we are able to access that
+JSP pages by using  its name directly.
+  http://localhost:1010/app/welcome.jsp
+
+If we provide JSP pages under WEB-INF folder or under classes then we are unable to
+access JSP pages with their name, to access JSP pages we must define URL pattern
+for the JSP page in web.xml and by usig that URL pattern only we are able to access
+JSP page.
+ in web.xml
+  wel<-------> /WEB-INF/welcome.jsp
+
+http://localhost:1010:/app/wel
+
+Define URL-Pattern for servlet:
+<web-app>
+	<servlet>
+		<servlet-name>welcomeServlet</servlet-name>
+		<servlet-class>com.cts.servlets.WelcomeServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>welcomeServlet</servlet-name>
+		<url-pattern>/welcome</url-pattern>
+	</servlet-mapping>
+</web-app>
+
+Define URL-Pattern for JSP:
+Location: /WEB-INF/welcomepage.jsp
+URL Pattern : /welcome
+
+<web-app>
+	<servlet>
+		<servlet-name>welcomeServlet</servlet-name>
+		<jsp-file>/WEB-INF/welcomepage.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>welcomeServlet</servlet-name>
+		<url-pattern>/welcome</url-pattern>
+	</servlet-mapping>
+</web-app>
+
+http://lcoalhost:1010/app/welcome
+
+
+2. Remote Distributed Applications
+------------------------------------------
+
+
+2. JSP Lifecycle
+3. JSP Directivitites
+	JSP Page Directive
+	JSP include Directive
+	JSP Taglib Directive
+4. JSP Scripting Elements
+	Declarations
+	Scriptlets
+	Expressions
+5. Implicit Objects
+6. JSP Scopes
+	Page Scopes
+	Request Scope
+	Application Scope
+	Session Scope
+7. JSP Actions
+	1. Standard Actions
+	2. Custom Actions
+8. Action Tags
+	<jsp:useBean>
+	<jsp:setPropert>
+	<jsp:getProperty>
+	<jsp:include>
+	<jsp:forward>
+	<jsp:param>
+	<jsp:plugin>
+	<jsp:fallback>
+	<jsp:params>
+	<jsp:declaration>
+	<jsp:scriptlet>
+	<jsp:expression>
+	------
+	------
+9. Custom Tags
+	Classic Tags
+	Simple Tags
+-----------------------------------------
+JSTL(JavaServer Pages Standard Tag Library)
+--------------------------------------------
+1. Introduction
+2. Core Tags
+3. XML Tags
+4. SQL Tags
+5. Foramtted Tags
+6. Functions Tags
+
+-----------------------------
+Expression Language:
+-------------------
+1. Introduction
+2. EL Implicit Objects
+3. EL Functions
+----------------------------------------------------
+
