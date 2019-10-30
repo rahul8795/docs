@@ -214,6 +214,51 @@ http://lcoalhost:1010/app/welcome
 
 
 2. JSP Lifecycle
+----------------------------------------
+JSp Lifecycle is deviede into two part :
+
+1. Translation Phase:
+   1. JSP Loading
+   2. JSP Parsing
+   3. JSP Translation to Servlet
+   4. Servlet Compilation
+2. Request processing phase:
+   1. Servlet Loading
+   2. Servlet instantiation
+   3. Servlet initalization
+   4. Request processing
+   5. Servlet Deinstantiation
+   6. Servlet Unloading
+   7. JSP Unloading
+
+JSP Elements:
+---------------
+
+Q). What are the differences between Jsp Directives and Jsp Scripting Elements?
+--------------------------------------------------------------------------------
+Ans.
+-----
+1. In JSP pages, JSP directives are used to defined present jsp properties, to include 
+target page content into the present JSP page and to make available user
+defined tag library to present jsp page.
+
+   JSP scripting elements are used to provide java code inside the jsp page.
+
+2. Almsot all the jsp directives are recognized and evaluated at the time of 
+Translating JSP page to Servlet.
+   Almost all the JSP Scripting elements are recognized and evaluated at Request 
+   Processing.
+
+3. Majority of the JSP Directives are not giving effect to the Response generation.
+   Majority of the JSP Scripting elements are giving effect to the Response genetaion.
+
+
+Q). To prepare JSP pages we have already JSP Scripting elements then what is the
+requirement to go for JSP Actions?
+---------------------------------------------------------------------------------
+Ans:
+-----
+
 3. JSP Directivitites
 	JSP Page Directive
 	JSP include Directive
