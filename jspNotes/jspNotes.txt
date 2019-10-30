@@ -302,6 +302,22 @@ XML Based Syntax : <jsp:directive.page [Attributes_List] />
 JSP Based Sysntax : <%@page [Attributes_List] %>
 
 JSP Page directives includes the attributes like
+1. language
+2. contentType
+3. info
+4. import
+5. extends
+6. buffer
+7. isAutoFlush
+8. errorPage
+9. isErrorPage
+10. session
+11. isThreadSafe
+12. isElIgnored
+----
+----
+
+
 1. language:
 --> It can be used to specify a particular Scripting language name inorder to use
 in JSP pages under Scripting elements.
