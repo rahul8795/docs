@@ -258,11 +258,78 @@ requirement to go for JSP Actions?
 ---------------------------------------------------------------------------------
 Ans:
 -----
+In JSP pages, JSP Scripting elements are used to provide JAVA code, but, the main
+intention of JSP tech is to reduce Java as much as possible from Web Applications,
+in this context, to preserve JSP tech theme we have to remove JAVA code from JSP pages,
+for this, we have to remove scripting elements from JSP pages. To remove
+Scripting elements we have to use JSP Acions.
+
 
 3. JSP Directivitites
-	JSP Page Directive
-	JSP include Directive
-	JSP Taglib Directive
+---------------------------
+--> The main intention of JSP directives is,
+1. To define present JSP properties
+2. To include target page content in present JSP page
+3. To make available user defined tag library in present JSP.
+
+Syntax:
+---------
+1. XML Based Syntax
+----------------------
+<jsp:direcitve.directiveName [Attributes_List] />
+Ex. <jsp:directive.page [Attributes] />
+
+2. JSP Based Syntax
+<%@directiveName [Attribute_List] %>
+Ex. <%@page [Attribute_List] %>
+In JSP tech, there are three types of Directives.
+
+	1. JSP Page Directive
+	2. JSP include Directive
+	3. JSP Taglib Directive
+1. JSP Page Directive
+It able to define present JSP page properties.
+EX: importing java packages.
+    Allowing / Not allowingn session implicit objects.
+    providing content type in response.
+    Allowing / Not allowing exception implicit Objects
+    ----------
+    ----------
+
+Syntax:
+--------
+XML Based Syntax : <jsp:directive.page [Attributes_List] />
+JSP Based Sysntax : <%@page [Attributes_List] %>
+
+JSP Page directives includes the attributes like
+1. language:
+--> It can be used to specify a particular Scripting language name inorder to use
+in JSP pages under Scripting elements.
+Note: Almost all the servers are supporting only JAVA as scripting language to use
+in scripting elements.
+
+The default vaue for this attribute is "java".
+EX: <%@page language = "java" %>
+
+2. contentType
+3. info
+4. import
+5. extends
+6. buffer
+7. isAutoFlush
+8. errorPage
+9. isErrorPage
+10. session
+11. isThreadSafe
+12. isElIgnored
+----
+----
+
+2. JSP include Directive
+3. JSP Taglib Directive
+
+
+
 4. JSP Scripting Elements
 	Declarations
 	Scriptlets
