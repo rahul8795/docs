@@ -308,7 +308,7 @@ JSP Page directives includes the attributes like
 4. import
 5. extends
 6. buffer
-7. isAutoFlush
+7. autoFlush
 8. errorPage
 9. isErrorPage
 10. session
@@ -328,11 +328,86 @@ The default vaue for this attribute is "java".
 EX: <%@page language = "java" %>
 
 2. contentType
+---------------
+It can be used to give an intemation to the client browser about to specify which
+type of response that the present JSP page is generating.
+
+The default value for contentType is "text/html".
+Ex: <%@page contentType="text/html"%>
+
 3. info
+----------
+To provide description about the present JSP page we have to use "info" attribute.
+
+If we provide description to info attribute then we are able to get the provided 
+description by using getServletInfo() method in JSP page.
+
+The default value for info attribute is "Jasper JSP 2.3 Engine".
+
+
 4. import
-5. extends
-6. buffer
-7. isAutoFlush
+-----------
+To make available classes and intefaces of a particular package into the present 
+JSP page we will use "import" attribute.
+
+approach-1:
+-----------
+<%@ page import="java.time.LocalDate"%>
+<%@ page import="java.util.Date"%>
+
+approach-2:
+------------
+<%@page import="java.time.LocalDate" impport="java.util.Date" %>
+
+approach-3:
+------------
+<%@ page import="java.time.LocalDate,java.util.Date"%>
+
+Note: In page directive attributes, only import attribute is responsible attribute.
+
+The default values for import attribute is
+java.lang
+java.io
+java.servlet
+java.servlet.http
+javax.servlet.jsp
+------
+------
+
+
+
+5. extends:
+-----------
+It can be used to specify a particular super class to the translated servlet.
+
+The default value for this attribute is "HttpJspBase".
+
+If we want to specify any super class for the translated servlet then the 
+specified class msut be syb class to HttpServlet and an implementation class to
+HttpJspPage and JspPage interfaces.
+
+
+
+
+6. buffer:
+-------------
+To specify a particular size to the Buffer in JspWriter we will use 
+"buffer" attribute.
+
+The default value for this attribute is "8kb".
+Ex. <%@ page buffer="52kb" %>
+
+
+7. autoFlush
+-------------
+It can be used to give an intemation to the container about to auto flush or not to
+auto flush the response to the client when JspWriter buffer is filled with the 
+response. If we provide true value to autoFlush attribute then container will flush 
+response to client automatically, if we provide autoFlush attribute value false 
+then Container will not flush response to the client, when buffered is full then 
+container will an exception.
+
+The default value for aotoFlusj is "true".
 8. errorPage
 9. isErrorPage
 10. session
