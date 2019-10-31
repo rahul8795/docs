@@ -1,0 +1,45 @@
+Maven and Spring Boot
+----------------------
+Spring Boot Application
+---> Maven
+---> Gradle
+---> Yml
+
+Pre-Requisite : Spring - Core, AOP, JDBC, ORM, Web MVC
+IDEs : STS, Eclipse IDE
+
+Servres: Integrated Servers like Tomcat, Jetty
+
+DB: Oracle, MySql, In Memory [H2].
+
+Syllabus:
+1. Maven
+2. Spring Boot
+3. Spring JPA
+4. Spring Data JPA
+
+
+MAVEN:
+------
+--> Maven is "Yiddish"[German language] word, its meaning is "Accumalator of Knowledge".
+--> Originally designed for "Jakartha Turbine Project".
+
+
+Maven will do.
+--> Maven will provide default project structure.
+--> Downloading Required Dependencies [Jar files].
+--> Compiles Source Code 
+--> Packaging projects as .jar file, .war file or .ear file.
+--> Starts Server (auotmatically)
+--> Deploying project in Server. (auotmatically)
+--> Perform Unit testing. (auotmatically)
+--> Prepare Test Reports
+--> Prepares Documetations 
+--> Undeploye web application from server.
+--> Stop Server
+-----
+-----
+
+
+pom.xml[Project Object Model]
+------------------------------
