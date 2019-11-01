@@ -85,6 +85,7 @@ Spring-2:
 4. Spirng Cloud
 5. Spring Micro Services
 6. Spring Social
+7. Spring Batch
 ------
 --------
 
