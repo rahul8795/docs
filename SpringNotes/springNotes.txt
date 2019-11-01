@@ -1,0 +1,93 @@
+Spring:
+--------
+1. Core Module
+2. JDBC/DAO Module
+   1. Load and Register Driver
+      Class.forName("oracle.jdbc.OracleDriver");
+   2. Establish Connection between Java application and database
+      Connection con = DriverManager.getConnection("
+      jdbc:oracle:thin:@localhost:1521:xe","system","root");
+   3. Create either Statement or preparedStatement or CallableStatement :
+      Statement st = con.createStatement();
+   4. Write and execute SQL queries:
+      ResultSet re = st.executeQuery("select *from emp1");
+      int rowCount = st.executeUpdate("insert into emp1 values(-----)");
+      boolean b = st.execute("update emp1 set ESAL = ESAL + 5000 where ESAL < 10000");
+   5. rs.close();
+      st.close();
+      con.close();
+
+
+jdbcTemplate.execute("select *from emp1");
+
+3. Spring ORM Module:
+-------------------------
+1. Create Configuration Object
+   Configuration cfg = new Configuration()
+   cfg.configure();
+
+2. Create SessionFactory Object
+   SessionFactory sf = cfg.buildSessionFactory();
+
+3. Create Session object:
+   Session s = sf.openSession();
+
+4. Create Transactions Object.
+   Transaction tx = s.beginTransaction();
+
+5. Perform Database Opeartions
+   int k_Val = s.save(emp);
+
+6. tx.commit();
+
+7. Close the resources:
+   s.close();
+   sf.close();
+
+HibernateTemplate
+
+hibernateTemplate.save(emp);
+
+
+Spring AOP:
+-------------
+
+
+Spring Transaction:
+--------------------
+
+Spring Web Module:
+--------------------
+Web and Web MVC
+
+
+Spring Security:
+----------------
+Spring-1:
+---------
+1. Core Module
+2. AOP
+3. JDBC/DAO
+4. ORM
+5. Transaction
+6. Web and Web MVC
+7. Security
+
+
+1. MAVEN
+2. LOG4J
+3. JUNIT
+Spring-2:
+--------------
+1. Spring Boot
+2. Spring JPA
+3. Spring Data-JPA
+4. Spirng Cloud
+5. Spring Micro Services
+6. Spring Social
+------
+--------
+
+Eclipse, STS
+Oracle, MySQL
+Tomcat, Weblogic, JBOSS or Wildfly, Glassfish
