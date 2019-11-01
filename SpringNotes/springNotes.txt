@@ -92,3 +92,81 @@ Spring-2:
 Eclipse, STS
 Oracle, MySQL
 Tomcat, Weblogic, JBOSS or Wildfly, Glassfish
+--------------------------------------------------
+1. Introduction:
+-----------------
+Enterprise:It is a Business Organization, it is a group of organization running under single label.
+
+Enterprise Application: It is a Software Application designed for a enterprise, it will
+simplify the internal business processing.
+
+
+1. User Interface Layer / Presentation Layer 
+   1. Starting Point to access our application
+   2. It will improve look and feel to the enterprise application.
+   3. It will take data from users inorder to submit to enterprise application.
+   4. To perform Client Side Data Validations with JavaScript functions.
+   5. To sent different types of requests from client to Server.
+   6. Presentation Logic --> AWT, SWING, JAVS FX, HTML, JSP, .....Struts, JSF,.....
+
+2. Business Processing Layer
+   1. It is Heart of the Enterprise Applications,
+      It can be used to define and execute all Business
+      rules and regulations which clients exactly required.
+   2. To prepare this layer we have to use a separete logic 
+      called as business logic.
+   3. To prepare Business Logic, we have to use a set of 
+      technology Java Beans, Servlets, EJBs,....
+
+3. Data Storage and Access Layer / Persistence Layer
+   1. It is last layer in Enterprise Application develoment.
+   2. Its main intention is to interact with database and to 
+      perform operations as per the Business Rules and regualtions.
+   3. To prepare this layer, we will use a separate logic 
+      called as Persistence logic.
+   4. JDBC, JPA, Tooplink,...Hibernate, EJBs-Entity Beans,.....
+
+System Architecture:
+---------------------
+1. 1-Tier Arch
+2. 2-Tier Arch
+3. 3-Tier Arch
+   ----
+   ----
+   n-Tier Arch
+
+1. 1-Tier Arch:
+---------------
+    0. we will provide all the enterprise application layer in a single 
+       machine.
+    1. It is highly recomended for Standalone Application.
+    2. All Three layers must be managed by single
+       Machine, so single Machine resources may not
+       be sufficient to execute enterprise application.
+    3. It will reduce applicaiton performance.
+    4. It is providing only Single User environment.
+    5. It is not providing Database Sharability and Components Sharability.
+    6. It is providing tightly coupled architecture.
+
+2-Tier Arch:
+------------
+--> In 2-Tier arch, we will provide the complete enterprise application in two macnines.
+--> In Tier-1 Machine we will use User Interface Layer and Business Processing Layer,
+    in Tier-2 Machine we will use Data Storage and Access Layer.
+-->  2-Tier Arch is able to provide loosly coupled design when comaored with 1-Tier Arch.
+--> 2-Tier Arch is recomended for Enterprise Applicaitons and it is conventional Arch for 
+    Enterprise Applicaitons.
+--> 2-Tier Arch is able to improve Database Sharability.
+--> Still 2-Tier Arch is not providing clearcut seperation between presentation layer 
+    and Data Storage and Access Layer.
+--> It is providing database sharability but it is not providing component sharability.
+--> It is not suitable for Standalone Applications.
+--> When compared with 1-Tier Arch, 2-Tier Arch will improve applications performance, 
+    but, maintanence cost will be increased.
+
+3-Tier Arch:
+-------------
+
+
+Types of Enterprise Applications:
+-----------------------------------
