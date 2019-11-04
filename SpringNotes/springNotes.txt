@@ -232,6 +232,11 @@ application arch only,intern, Structs and JSF are MVC based Frameworks.
 
 MVC Arch ind its Rules and Regulations:
 ---------------------------------------------------------------
+--> MVC is a design pattern, it will provide standard tamplate to prepare web
+applications.
+--> MVC is a design pattern, it will define standard flow of execution for the web
+applications.
+
 1. In MVC based applications, controller must be Servlet, a set of JSP pages must be view part.
 2. In MVC based web applications, only one Controller must be provided.
 3. In MVC based web applications, every request must be provided to Controller only and
@@ -264,3 +269,118 @@ If any product provide 70% common implementation as predefined then developers w
 simplified, where Developers may provide only 30% of the remaining implementation. Here 
 the third parties provided products which are providing 70% common implementation
 called as "Framework".
+
+
+
+Frameworks:
+-------------
+
+--> Framework is a Pre-Fabricated software components that programmer can reuse, share
+and customize inorder to simplify Application development.
+
+--> Framework is a semi implemented application, it will provide very good environment
+to prepare enterprise applications as per developers convenience.
+
+--> Framework is a collections of tools and APIs, it will provide very good 
+envoronment to prepare enterprise applications in simplified manner.
+
+Adv:
+-----
+--> Frameworks will provide standard template to design applications.
+--> Frameworks will providing Standard flow of execution between components.
+--> Frameworks are allowinf parallel development.
+--> Frameworks are able to reduce Development time.
+--> Frameworks are able to reduce development cost.
+--> Frameworks are able to improve Productivity.
+
+Types of Frameworks:
+--------------------
+1. Web Frameworks
+2. Application Frameworks
+
+Q) What is the difference between Web frameworks and Application frameworks?
+-----------------------------------------------------------------------------
+Ans:
+----
+Web frameworks will provide very good env to prepare and execute web applications only.
+Ex. Struts, JSF, Xworks2
+
+Application Frameworks are able to provide very good env to prepare and execute any type
+of JAVA, J2EE applications like Standalone Appl, Web Appl, Distributed Appl, Database Related Appls......
+EX: Spring Frameworks. 
+
+Q) What are the differences between Struts, JSF, and Spring Framework?
+-----------------------------------------------------------------------
+Ans:
+-----
+1. Struts and JSF are web frameworks, which are used to prepare only web applications.
+
+Spring frameworks is an applicaiton frameworksm, it will provide very good env to prepare
+the applications like standalone appl, web appl, distributed appl,.....
+
+2. Struts framework is able to provide focus on only controller layer.
+   JSF framework is able to provide focus on view layer.
+   Spring framework is able to focus on all the layers of enterprise appl.
+
+3. Struts and JSF are designed mainly on MVC and its associated design patterns.
+   Spring Frame's web MVC module is only designed on the top of MVC design pattern.
+
+4. Struts and JSF are providing the generic services like I18N(Interalization), EH(Exception handling), Validations,.. but
+   Struts and JSF are not providing support for middleware services like JAAS,
+   JNDI, JTA, Java Mail,.....
+   
+   Spring framework is able to provide support for the generic Services like I19N, EH, data
+   validations,... and the middleware services like JAAS, JNDI
+   ,JTA, JAVA Mail,.....
+
+5. Struts and JSF are not modularized frameworks, to prepare any simple application even
+   we have to load the complete framework.
+
+   Spring framework is modularized framework, to prepare any simple application it is not frquired to load the complete spring 
+   framework, it is sufficient to load the required modules.
+
+6. Struts and JSF are more API dependentm they not following POJO/POJI kind of
+   implementations.
+  
+   Spring framework is less API dependent, it follows POJO/POJI kind of implementations.
+
+7. It is difficult to perform debugging and testing over struts and JSF applicaton.
+   
+   It is very simple to perform debugging and testing over Spring Applicaiton.
+
+8. Struts and JSF are heavyweight frameworks.
+   Spring framework is light weight.
+
+Struts and JSF:
+---------------
+public ActionForward execute(ActonsMapping, ActionForm, HttpServletRequest request,
+HttpServletResponse response)throws Exception{
+--------
+}
+Spring:
+--------
+public String doLogin(){
+----
+}
+
+9. Struts and JSF are not providing inbuilt support for integrating the explicit
+applications like EJB applocaitons, Hibernate Appl, Ajax Appl, JDBC Appl,...........
+
+Spring framework has provided very good inbuilt support to integrate other tech
+applications like EJBs, JDBC, Hibernate, Struts Appl, JSF appl,.........
+
+10. To prepare view part, Struts and JSF are allowing the fundamental view tech like
+Html, JSP.......
+
+Spring framework is allowing the most advanced view tech Velocity, Freemarker,...
+to prepare View part.
+
+11. Struts and JSF are not having aspect orientation.
+  
+ Spring Framework is having aspet orientation support along with object
+   orientation.
+
+12. Struts and JSF are not having Testing Support[Developers Level Testing].
+
+Spring Framework is providing testing support by having testing module.
+
