@@ -384,3 +384,123 @@ to prepare View part.
 
 Spring Framework is providing testing support by having testing module.
 
+
+Spring History
+----------------
+1. Home: Interface1
+2. Author: Mr. Rod Johnson
+3. Objective: To simplify and accelerate appl development.
+4. Type: Open Source Framework
+5. Type of Framework: Application Framework
+6. Initial version: Spring1.0[Oct, 2004].
+7. User Versions: Spring3.x, 4.x
+8. Latest version: Spring5.x 
+9. Website: http://spring.io
+10. Designed on: JAVA, J2EE
+11. Compatibility/Portability: Supported by all IDEs and Servers.
+12. Tools: STS[Spring Tool Suit]
+
+Spring Modules:
+----------------
+Spring1.x
+-----------
+1. Spring Core
+2. Spring AOP
+3. Spring DAO
+4. Spring ORM
+5. Spring Context
+6. Spring Web
+7. Spring Web MVC
+
+Spring2.x
+----------
+1. Spring Core
+2. Spring AOP
+3. Spring DAO
+4. Spring ORM
+5. Spring JEE
+6. Spring Web
+
+Spring3.x
+----------
+1. Core Container
+   Beans
+   Core
+   Context
+   Expression language
+2. AOP
+3. Aspects
+4. Instrumentation
+5. Data Access and Integration
+   Transactions
+   JDBC
+   OXM
+   ORM
+   JMS
+6. Web
+   Web
+   Portlet
+   Servlet
+   Struts
+7. Test
+
+
+Spring4.x
+-----------
+1. Core Container
+   Beans
+   Core
+   Context
+   Spring Expression language
+2. AOP
+3. Aspects
+4. Instrumentation
+5. Messaging
+6. Data Access and Integration
+   Transactions
+   JDBC
+   OXM
+   ORM
+   JMS
+7. Web
+   Web
+   Portlet
+   Servlet
+   WebSocket
+8. Test
+
+Spring5.x
+-----------
+1. Core Container
+   Beans
+   Core
+   Context
+   Spring Expression language
+2. AOP
+3. Aspects
+4. Instrumentation
+5. Messaging
+6. Data Access and Integration
+   Transactions
+   JDBC
+   OXM
+   ORM
+   JMS
+7. Web
+   Web
+   Portlet
+   Servlet
+   WebSocket
+
+
+Steps to preapare First Spring Application[Core Module]
+--------------------------------------------------------
+1. Download Spring Framework[Jars] from Internet.
+2. Prepare Java Project in Eclipse IDE.
+3. Preapre Spring Library with the required JAR files.
+4. Prepare Bean class.
+5. Prepare Spring Configuration file with Bean congfiguration
+6. Preapare Test Application.
+
+
+
