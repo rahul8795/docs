@@ -631,4 +631,65 @@ System.out.println("User Name : ");
 String data = br.readLine();
 
 
+Three ways to provide value to bean class :
+---------------------------------------------
+1. As parameters to business methid in Bean class.
+2. By providing setXXX() and getXXX() methods in Bean class and by excuting setXXX()
+   method.
+3. By declairng data in Spring configuration file as property in bena configuration.
+
+
+Spring:
+---------
+Example on Beans and its configuration in Spring configuration file:
+
+HelloBean.java:
+----------------
+package com.cts.beans;
+
+public class HelloBean {
+	private String name;
+	public void setName(String name){
+		this.name = name;
+	}
+	public String getName(){
+		return name;
+	}
+	public String sayHello(){
+		return "Hello " + name + " !";
+	}
+}
+
+applicationContext.xml:
+------------------------
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+        <bean id="helloBean" class="com.cts.beans.HelloBean">
+        <property name="name" value="Durga"/>
+        </bean> 
+</beans>
+
+Test.java:
+------------
+package com.cts.test;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.cts.beans.HelloBean;
+
+public class Test {
+
+	public static void main(String[] args) {
+		ApplicationContext context = new ClassPathXmlApplicationContext("/com/cts/resources/applicationContext.xml");
+		HelloBean hello = (HelloBean) context.getBean("helloBean");
+		//hello.setName("Rahul");
+		System.out.println(hello.sayHello());
+	}
+
+}
+
 
