@@ -692,4 +692,148 @@ public class Test {
 
 }
 
+IOC Containers:
+---------------
+The main intention of IOC containers is to create Bean objects and to supply bean 
+objects to Spring Application.
+
+There are two types of IOC containers:
+1. BeanFactory
+2. ApplicaitoContext 
+
+1. BeanFactory:
+-----------------
+--> It is basis / fundamental / outdated container to create Bean objects in Spring Applications.
+--> It is providing the functionalities like creating bean objects and supplying bean
+objects to the Spring Applicaitons, it is not providing the advanced features like I18N, 
+Event Notificaiton model,.... in Spring Applications.
+--> BeanFactory is deprecated from Spring3.x version.
+--> BeanFactory is able to represent by Spring framework in the form of an interface
+    "org.springframework.beans.factory.BeanFactory".
+-->Spring framework has provided an implementaiton class to BeanFactory interface in the form of 
+   "org.springframework.beans.factory.xml.XmlBeanFactory".
+
+1. Create Resource object
+2. Create BeanFactory object
+3. Get Bean Object from Beanfactory and Access Business Methods.
+
+Resource:
+----------
+To represent beans configuration details which we provided in spring configuration file
+then we have to use Resource object...
+
+To represent Resource objects, Spring framework has provided a predefined interface in 
+the form of "org.springframework.core.io.Resource".
+
+Spring Framework has provided predefined implementation classes for Resource interface.
+
+1. org.springframework.core.io.ByteArrayResource
+2. org.springframework.core.io.FileSystemResource
+3. org.springframework.core.io.ClassPathResource
+4. org.springframework.core.io.InputStreamResource
+5. org.springframework.core.io.UrlResource
+6. org.springframework.web.context.support.ServletContextResource
+7. org.springframework.web.portlet.context.PortletContextResource
+ 
+
+Resource resource = new ClassPathResource("spirng-config.xml");
+
+2. Create BeanFactory object:
+------------------------------
+BeanFactory factory = new XmlBeanFactory(reosurce)
+
+3. Get Bean Object and Access Business Method.
+
+public void getBean(String id)
+
+HelloBean hello = (HelloBean) factory.getBean("helloBean");
+
+Spring[Core]:
+-------------
+Example on BeanFactory IOC Container.
+
+Employee.java
+--------------
+package com.cts.beans;
+
+public class Employee {
+	private int eno;
+	private String name;
+	private float esal;
+	private String eaddr;
+	public int getEno() {
+		return eno;
+	}
+	public void setEno(int eno) {
+		this.eno = eno;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public float getEsal() {
+		return esal;
+	}
+	public void setEsal(float esal) {
+		this.esal = esal;
+	}
+	public String getEaddr() {
+		return eaddr;
+	}
+	public void setEaddr(String eaddr) {
+		this.eaddr = eaddr;
+	}
+	
+	
+	public void getEmpDetails() {
+		System.out.println("Employee Details");
+		System.out.println("----------------------");
+		System.out.println("Employee Number  :"+eno);
+		System.out.println("Employee Name    :"+name);
+		System.out.println("Employee Salary  :"+esal);
+		System.out.println("Employee Address :"+eaddr);
+		
+	}
+}
+
+applicationContext.xml:
+--------------------------
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+        <bean id="empBean" class="com.cts.beans.Employee">
+        	<property name="eno" value="111"></property>
+        	<property name="name" value="Rahul Dubey"></property>
+        	<property name="esal" value="50000"></property>
+        	<property name="eaddr" value="Pune"></property>
+        </bean>
+</beans>
+
+Test.java:
+-----------
+package com.cts.test;
+
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.xml.XmlBeanFactory;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+
+import com.cts.beans.Employee;
+
+public class Test {
+
+	public static void main(String[] args) {
+		 Resource resource = new ClassPathResource("/com/cts/resources/applicationContext.xml");
+		 BeanFactory factory = new XmlBeanFactory(resource);
+		 Employee emp = (Employee) factory.getBean("empBean");
+		 emp.getEmpDetails();
+	}
+
+}
+
+2. ApplicaitoContext 
 
