@@ -829,6 +829,7 @@ public class Test {
 	public static void main(String[] args) {
 		 Resource resource = new ClassPathResource("/com/cts/resources/applicationContext.xml");
 		 BeanFactory factory = new XmlBeanFactory(resource);
+		  // BeanFactory factory = new XmlBeanFactiry(new ClassPathResource("applicationContext.xml"));
 		 Employee emp = (Employee) factory.getBean("empBean");
 		 emp.getEmpDetails();
 	}
