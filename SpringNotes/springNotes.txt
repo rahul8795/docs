@@ -987,3 +987,93 @@ ApplicaitonContext is not outdated container.
 Bean in Spring Framework:
 --------------------------
 
+1. Beans Defination
+2. Beans configuration
+3. Beans Scopes
+4. Bean Lifecycle 
+5. Beans Inheritance
+6. Nested Beans
+7. BeanPostProcessor
+
+
+1. Beans Defination:
+---------------------
+--> Bean is a Reusable component, it is a normal java class, it will have
+    1. Properties
+    2. setXXX and getXXX methods for each and every properties
+    3. Business Methods
+    4. Event-Notificatio model
+    5. Data vaidations
+       ------
+       ------
+Rules and Regulation to use Beans in Spring:
+1. In spring application, bean components must be POJJO classes, they must not implement 
+   or extend predefined library except java.io.Serializable.
+2. In Bean classes, we have to declare properties and we must provide a seperate set of
+   setXXX() and getXXX() methods.
+3. In sprign applicaitons, Bean classes must be public, non abstract and non final.
+4. In spring framework, inside beans, all properties must be declared as private and all
+   methods msut be declared as public.
+5. In Bean class, if we want to decalre any construtor then it is possible to provide  
+   public and 0-arg construtor.
+6. If we want to provide our own comaprision between bean class then it is suggestable 
+   to overide equals(--).
+7. If we want to generate hashcode values to the Bean objects in our own view then we
+   have to override hashCode() method.
+
+
+2. Beans configuration:
+-----------------------
+--> We msut provide details of the bean classes to the containers inorder to 
+instantiate.
+1. XML based configuration
+2. Annotation Based configuration
+3. Java Based Configuration
+
+1. XML based configuration:
+----------------------------
+If we provide beans details to the containers through an xml file then it is called as
+XML configuration.
+
+<beans ----->
+   <bean id="--" name="--" class="--" scope="--">
+    -----
+   </bean>
+</beans>
+
+<bean> tag can be used to provide single bean configuration details.
+id: it will provide an identity value for the bean object.
+name: it will provide an identity or alias names to the bean object.
+class: Fully qualified name of the Bean class.
+scope: it can be used to specify a particular spring scope inorder to keep Bean objects.
+
+Q) What is the difference between 'id' attribute and 'name' attribute?
+-----------------------------------------------------------------------
+Ans:
+-----
+'id' attribute will take single value that is identity for th e bean object inorder to
+retrieve.
+
+'name' attribute will take one or more no of values with, or; or space separator, if
+ we provide more than one value then first value is treated as identity for the bean
+object and the reamining values are treated  as alias names to the bean identity.
+
+Note: In Bean configuration, we can provide bean class configuration with "name"
+attribute and without "id" attribute.
+
+Note: In spring configuration, in bean class configuration, we can provide both 'id'
+attribute and 'name' attribute, where id attribute value is treated as bean identity and
+'name' attribute values are treated as bean alias names.
+
+Note: It is possible to get Bean objects on the basis of both identity and alias names.
+
+
+2. Annotation Based configuration
+3. Java Based Configuration
+
+3. Beans Scopes
+4. Bean Lifecycle 
+5. Beans Inheritance
+6. Nested Beans
+7. BeanPostProcessor
+
