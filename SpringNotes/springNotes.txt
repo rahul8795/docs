@@ -1068,6 +1068,57 @@ attribute and 'name' attribute, where id attribute value is treated as bean iden
 Note: It is possible to get Bean objects on the basis of both identity and alias names.
 
 
+where "class" attribute is able to take fully qualified name of the respective bean class.
+
+where "scope" attribute will take a particular Spring scope.
+
+Scopes in Spring Framework:
+---------------------------
+--> public, protected, <default>, private
+--> Spring framework has provided 7 types of scopes to make available Bean objects and 
+    to generate same or different bean objects for our Bean request.
+
+1. Singltion Scope
+2. Prototype Scope
+3. Rerquest Scope
+4. Session Scope
+5. globalSession Scope
+6. application Scope
+7. webSocket Scope
+
+
+1. Singltion Scope:
+-------------------
+--> It is default scope in spring applicaitons.
+--> It will create a separate Bean object for each and every bean definition in Spring
+    Configuration.
+
+2. Prototype Scope:
+--------------------
+--> It is not default scope in Spring applications.
+--> It allows to create a separate Bean object for each and every request for Bean, that 
+    is, for each and every getBean() method call.
+
+In Spring application, we able to define our own scope also.
+
+ThreadLocal
+--------------
+private,  <default>, protected, public
+
+ThreadScope: It will make available data upto how many no of resources[java methods]
+which are accessed by the present Thread.
+
+To implement ThreadScope in Java we have to use "ThreadLocal" class.
+
+
+3. Rerquest Scope
+4. Session Scope
+5. globalSession Scope
+6. application Scope
+7. webSocket Scope
+
+
+
 2. Annotation Based configuration
 3. Java Based Configuration
 
@@ -1076,4 +1127,3 @@ Note: It is possible to get Bean objects on the basis of both identity and alias
 5. Beans Inheritance
 6. Nested Beans
 7. BeanPostProcessor
-
