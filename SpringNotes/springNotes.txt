@@ -836,5 +836,154 @@ public class Test {
 
 }
 
-2. ApplicaitoContext 
+Note: BeanFactory performance is slow that's why alternative is AppliocationContext. BeanFactory is best for memory utilization.
+      BeanFactory follow lazy and AppliocationContext follow eager loading.
+
+2. ApplicaitoContext: 
+----------------------
+--> ApplicaitonContex is an IOC Container in spring framework, it will create Bean
+onjects and it will suply Bean objects to Spring Applicaitons.
+
+--> AppicaitonContext is child to BeanFactory, it able to perform all the 
+functionalities what BeanFactory is performing and it will provide the advanced features
+like I18N, Event Notificaiton Model,.....
+
+--> In Spring Framework, ApplicaitonContext is represented in the form of a predefined 
+interface "org.springframework.context.ApplicationContext", it is a child interface to 
+"BeanFactory" interface.
+
+--> Spring Framework has provided the following implementation classes for 
+ApplcaitionContext interface.
+
+1. ClassPathXmlApplicaitonContext  
+2. FileSystemXmlApplicationContext
+3. WebXmlApplicationContext
+
+
+ApplicationContext context = new ClassPathXmlApplicationCOntext
+("aaplicaitonContext.xml");
+
+1. Prepare Bean classes as per the requirement.
+2. Preapre Spring Configuration File and provide beans configurations.
+3. Prepare Test Applcation, where we must use ApplicaitonContext container to manage
+   beans.
+
+Spring[Core Module]
+--------------------
+Student.java
+------------
+package com.cts.beans;
+
+public class Student {
+	private String sid;
+	private String sname;
+	private String saddr;
+	public String getSid() {
+		return sid;
+	}
+	public void setSid(String sid) {
+		this.sid = sid;
+	}
+	public String getSname() {
+		return sname;
+	}
+	public void setSname(String sname) {
+		this.sname = sname;
+	}
+	public String getSaddr() {
+		return saddr;
+	}
+	public void setSaddr(String saddr) {
+		this.saddr = saddr;
+	}
+	
+	public void getStudentDetails() {
+		System.out.println("Student Details");
+		System.out.println("-----------------");
+		System.out.println("Student Id    :"+sid);
+		System.out.println("Student Name  :"+sname);
+		System.out.println("Student Address :"+saddr);
+		
+	}
+	
+}
+
+applicationContext.xml
+------------------------
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+        <bean id="stdBean" class="com.cts.beans.Student">
+        	<property name="sid" value="S-111"></property>
+        	<property name="sname" value="Durga"></property>
+        	<property name="saddr" value="Gujrat"></property>
+        	
+        </bean>
+</beans>
+
+Test.java
+----------
+package com.cts.test;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.cts.beans.Student;
+
+public class Test {
+
+	public static void main(String[] args) {
+		ApplicationContext context = new ClassPathXmlApplicationContext("/com/cts/resources/applicationContext.xml");
+		Student std = (Student) context.getBean("stdBean");
+		std.getStudentDetails();
+	}
+
+}
+
+Q)What are the difference between BeanFactory and ApplicationContext Containers?
+---------------------------------------------------------------------------------
+Ans:
+-----
+1. BeanFacotry is a fundamental container, it able to provide fundamental
+functionalities to the Spring applications like creating bean objects and supplying bean
+objects to Spring application.
+
+ApplicationContext is an extension of BeanFactory, it able to perform the advanced
+features like I18N, and Notification Model,.... along basic functionalities
+what BeanFactory is providing.
+
+2. BeanFactory is not supporting AOP module.
+
+ApplicationContext is supporting AOP module.
+
+3. BeanFactory is not suitable for Web applicaiton development with spring WEB MVC 
+Module.
+
+ApplicaitonContext is very much suitable for Web applicaiton development on the basis of 
+Spring WEB MVC.
+
+4. BeanFactory is able to create Bean Objects when we access getBean() method, that is,
+Lazy instantiation / Initialization.
+
+ApplicationContext is able to create Bean objects at the time of ApplicaitonContext
+startup, that is, early Instantiation / Initialization.
+
+5. BeanFactory is able to support the Scopes like Signgleton and Prototype.
+
+ ApplicaitonContext is able to support the Scopes like singleton, prototype, request,
+session, globalSession,....
+
+6. BeanFactory is mainly for standalone applcaiton.
+
+ApplicaitonContext is for any type of Spring applicaiton.
+
+7. BeanFactory is outdated container in spring framework.
+
+ApplicaitonContext is not outdated container.
+
+
+Bean in Spring Framework:
+--------------------------
 
