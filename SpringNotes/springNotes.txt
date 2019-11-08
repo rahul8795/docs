@@ -1110,12 +1110,23 @@ which are accessed by the present Thread.
 
 To implement ThreadScope in Java we have to use "ThreadLocal" class.
 
+To define Custom Scope in Spring application we have to use the following steps.
+1. Declare User Defined class
+2. Implement Scope inteface and provide Scope interface methods in user defined class.
+   1. get()
+   2. remove()
+   3. getConversationalId()
+   4. registerDestrutionCallback()
+   5. resolveContextualObject(String name)
+3. Register User defined scope class in spring configuration file.
+   1. Declare a property CustomScopeConfigure class as bean.
+   2. Declare "scopes" as property in customScopeConfigure
+   3. Decalre map under scopes property
+   4. Declare Entry under map.
+   5. In Entry, declare Scope name as Key and Scope Object as value in map.
+4. Use custom Scope to the Bean Object:
+   <bean name="stdBean" class="StudentBean" scope="threadScope" />
 
-3. Rerquest Scope
-4. Session Scope
-5. globalSession Scope
-6. application Scope
-7. webSocket Scope
 
 
 
