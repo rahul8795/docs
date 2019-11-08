@@ -1131,9 +1131,25 @@ To define Custom Scope in Spring application we have to use the following steps.
 
 
 2. Annotation Based configuration
-3. Java Based Configuration
+3. Java Based Configuration:
+------------------------------
+Upto Spring 2.4 version, it is manadatory to provide spring configuration file, but
+from, Spring3.x version onwards, Spring configuratin file is optional, we can use
+Spring configuration class as an alternatives for spring configuration file.
 
-3. Beans Scopes
+1. Create Bean classes as per the requirement.
+2. Create Spring cofiguration class with the requirement methods by using the following 
+   annotations.
+   1. @Configuration
+   2. @Bean
+3. In Test class, in main() method use the follwing container class.
+   AnnotaitonConfigApplicationContext ctx = new AnnotaionConfigApplicationContext(
+   ConfigClass.class)
+4. GET	Bean object.
+   public Object getBean(Class c) / public Object getBean(String method_Name)
+5. Access Business Method.
+
+3. Beans Scopes--completed above
 4. Bean Lifecycle 
 5. Beans Inheritance
 6. Nested Beans
