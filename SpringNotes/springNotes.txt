@@ -1149,6 +1149,125 @@ Spring configuration class as an alternatives for spring configuration file.
    public Object getBean(Class c) / public Object getBean(String method_Name)
 5. Access Business Method.
 
+Spring [Core Module]
+Example of Java Based Configuration
+-------------------------------------
+WelcomeBean.java
+-----------------
+package com.cts.beans;
+
+public class WelcomeBean {
+	private String name;
+	static {
+		System.out.println("WelcomeBean class loading......");
+	}
+	public WelcomeBean() {
+		System.out.println("WelcomeBean class instantiation......");
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	public String getWelcomeMessage() {
+		return "Hello "+name + " , Welcome to CTS";
+	}
+}
+
+HelloBean.java
+-----------------
+package com.cts.beans;
+
+public class HelloBean {
+	private String name;
+	static {
+		System.out.println("HelloBean class loading......");
+	}
+	public HelloBean() {
+		System.out.println("HelloBean class instantiation......");
+	}
+    public void setName(String name) {
+		this.name = name;
+	}
+    public String getName() {
+		return name;
+	}
+	public String sayHello() {
+		return "Hello "+name+" , Good Morning";
+		
+	}
+}
+
+AppConfig.java
+-----------------
+package com.cts.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import com.cts.beans.HelloBean;
+import com.cts.beans.WelcomeBean;
+
+@Configuration
+public class AppConfig {
+	static {
+		System.out.println("AppConfig class loading......");
+	}
+	public AppConfig() {
+		System.out.println("AppConfig class instantiation......");
+	}
+	@Bean
+	public WelcomeBean welcomeBean() {
+		WelcomeBean wb = new WelcomeBean();
+		wb.setName("Rahul");
+		return wb;
+	}
+	
+	@Bean
+	public HelloBean helloBean() {
+		HelloBean hb = new HelloBean();
+		hb.setName("Rahul");
+		return hb;
+	}
+}
+
+Test.java
+-----------------
+package com.cts.test;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.cts.beans.HelloBean;
+import com.cts.beans.WelcomeBean;
+import com.cts.config.AppConfig;
+
+public class Test {
+
+	public static void main(String[] args) {
+		ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+		String[] beanNames = context.getBeanDefinitionNames();
+		for(String beanName : beanNames){
+			System.out.println(beanName);
+		}
+//		WelcomeBean welBean1 = (WelcomeBean) context.getBean("welcomeBean");
+//		System.out.println(welBean1.getWelcomeMessage());
+//		WelcomeBean welBean2 = (WelcomeBean) context.getBean("welcomeBean");
+//		System.out.println(welBean2.getWelcomeMessage());
+//		System.out.println(welBean1);
+//		System.out.println(welBean2);
+//		System.out.println(welBean1 == welBean2);
+		
+		
+//		HelloBean helloBean = (HelloBean) context.getBean("helloBean");
+//		System.out.println(helloBean.sayHello());
+	}
+
+}
+
+
 3. Beans Scopes--completed above
 4. Bean Lifecycle 
 5. Beans Inheritance
