@@ -1267,9 +1267,44 @@ public class Test {
 
 }
 
+4. Bean Lifecycle :
+----------------------
+The collective inofrmation of the Beans right from its starting point to its ending 
+point is called as Bean Lifecycle.
 
-3. Beans Scopes--completed above
-4. Bean Lifecycle 
+In Spring Framework, Bean lifecycle contains the following stages.
+1. Bean Class Loading
+2. Bean Instantiation
+3. Bean Initialization
+4. Bean Destruction
+
+1. Bean Class Loading:
+----------------------
+Loading bean class bytecode to the memory
+
+Class c = Class.forName("com.cts.beans.WelcomeBean");
+
+2. Bean Instantiation:
+-----------------------
+Creating Object for the loaded Bean Class.
+1. By using constructor directly
+2. By using Static Factory Method
+3. By using Instance Factory Method
+
+
+3. Bean Initialization and Bean Destruction:
+---------------------------------------------
+1. By using custom initialization and destruction method
+2. By using InitializingBean and DisposableBean callback interfaces.
+3. By using @PostConstruct and @PreDestroy annotations.
+
+1. Bean Class Loading
+2. Bean Instantiation
+3. Bean Initialization
+   1. Initilization through property tags in bean configuration, that is, through
+      setXXX() methods.
+   2. Initialization through User defined init() method. 
+
 5. Beans Inheritance
 6. Nested Beans
 7. BeanPostProcessor
