@@ -1303,7 +1303,14 @@ Creating Object for the loaded Bean Class.
 3. Bean Initialization
    1. Initilization through property tags in bean configuration, that is, through
       setXXX() methods.
-   2. Initialization through User defined init() method. 
+  2. Expicit Initilization
+      1. Initilization Bean Through @PostConstruct
+      2. Initilizing Bean through afterPropertiesSet() from InitilizingBean
+      3. Initilizing Bean through custom init() method
+4. Bean destruction.
+   1. Destroying bean through @PostDestory
+   2. Destroying Bean through destroy() from DisposaleBean callback interface.
+   3. Destroying Bean through custom destroy() method. 
 
 5. Beans Inheritance
 6. Nested Beans
