@@ -43,3 +43,331 @@ Maven will do.
 
 pom.xml[Project Object Model]
 ------------------------------
+--> POM stands for Project Object Model.
+--> POM is findamental Unit and Heart in MAVEN.
+--> POM is an XML filr contains some description or metadata about our projects and configuration
+    details which are used to build a Maven Project.
+--> POM contains default values for projects like build directories, which is src, target, main,.....
+    src/main/java, src/test/java
+--> In Maven1, name of this file is "project.xml", but, in Maven2, name was changed to "pom.xml"
+--> When we execute Maven project, aotomatically, Maven will search for the required configuration
+    details in pom.xml file.
+
+In Maven applicaiton, pom.xml file is able to provide the following configuraitons.
+1. Project Description
+2. Repository
+3. Dependency Management
+4. Project Inheritance
+5. Build Configurations
+6. Build Profiles
+
+1. Project Description:
+------------------------
+--> It is very first configuration in Maven, it will include some descriprion like 
+    1. Project name
+    2. Version number
+    3. Pakaged Type
+    ------
+    ------
+--> To provide the project description we will use set of tags.
+<project ...>
+   <!-- Porject Description -->
+   <modelVesrion>--</modelVersion>
+   <groupid>--</groupid>
+   <artifactid>--</artifactid>
+   <version> --</version>
+   <packaging>--</packaging>
+   -----
+   -----
+
+</project>
+
+--> Where "<porject>" is root tag in pom.xml
+--> Where <modelVersion> tag will declare which version of the Maven we are using, <modelVersion> will
+    take 4.0.0 as value to support for Maven2.x/3.x versions.
+--> Where <groupid> tag will take id of the project or base package name
+--> Where <artifactid> will take a name of the project
+--> Where <version> tag will take project version
+--> Where <pakaging> tag will take either jar / war / ear to deliver our application
+
+Ex:
+---
+<project ....>
+   <modelVersion>4.0.0</modelVersion>
+   <groupid>com.cts.banking</groupid>
+   <artifactid>iciciappl</artifactid>
+   <version>1.0</version>
+   <pakaginig>jar</pakaging>
+   --------
+   --------
+</project>
+
+2. Repository:
+---------------
+--> Repository is a locaiton or website, it will provide Maven projects required dependecies
+--> When we execute Maven projects, Maven will search for all the dependecies in the following three
+    repositories. 
+    1. Local Repository
+    2. Central Repository
+    3. Remote Repository
+
+Local Repository: It is a location in our computer, it will provide the required dependecies to the
+maven project, it will be created by maven when we execute maven commond first time.
+
+Maven will create Local Repository at the location like "C:\Users\765448\.m2\repository".
+
+Central Repository: It is a default repository for Maven, it is located at 
+    "http://repo1.maven.org/maven2"
+
+Note: It is possible to use some other repositories also in Maven, but, we must configure that 
+repositories in pom.xml.
+  https://repository.jboss.org/nexus/content/groups/public
+  https://mvnrepository.com/
+
+If we want to use other repositories in maven projects then we have to provide its configuration in
+pom.xml file.
+
+<project ......>
+   --------
+   <repositories> 
+      <repository>
+       <id>jboss</id>
+       <name>jboss repo</name>
+       <url>https://repository.jboss.org/nexus/content/groups/public </url>
+      </repository>
+   </repositories>
+   --------
+</project>
+
+
+Remote Repository: It is a location in our company and it will be managed by the same org inorder to
+provide previous applicaiton support.
+
+To configur remote repository in maven project we have to use the following cofiguration details in
+pom.xml file.
+
+<project ......>
+   --------
+   <repositories> 
+      <repository>
+       <id>CTS Lib</id>
+       <name>CTS repo</name>
+       <url>https://library.cts.com/maven2/lib </url>
+      </repository>
+   </repositories>
+   --------
+</project
+
+
+3. Dependency Management:
+--------------------------
+--> In Maven Terminology, dependency is nothing but jar files or library[Collection of Jars] which are required 
+    to perform compilations, executions, debugging, test,.....
+--> In our applicaitons, if we requored any library or Jar files then we will download them explicitly
+     from internet and will keep them in our applicaiton library and we will use in our applicaitons.
+--> If we use Maven for our application then we will specify which library we required in pom.xml file
+    instead of downloading them explicitly, in this context, Maven will take the responsibility of
+    downloading required libraries and maven will attach these libraries to our application library.
+--> To configuraiton dependencies in pom.xml file we will use a set of tags.
+<porject ......>
+--------
+   <dependencies>
+      <dependency>
+      ----------
+        <groupid>package name</groupid>
+        <artifactid>dependency name</artifactid>
+        <version>version_no</version>
+        <scope>provided</scope>
+      </dependency>
+      -----------
+   </dependencies>
+-------
+</project>
+
+EX:
+----
+<porject ......>
+---------------
+   <dependencies>
+   ---------------
+      <dependency>
+        <groupid>org.hibernate</groupid>
+        <artifactid>hibernate-core</artifactid>
+        <version>3.5.6-final</version>
+        <scope>provided</scope>
+      </dependency>
+      -------------
+   </dependencies>
+---------------
+</project>
+
+https://repo1.maven.apache.org/maven2/org/hibernate/hibernate-core/3.5.6-final
+
+Dependency Scope:
+-----------------
+It will provide lifetime to the dependencies in our projects.
+
+1. Compile 
+2. Provided
+3. Runtime
+4. Test
+5. System
+6. import
+
+1. Compile:
+------------
+It is default scope in maven projects, it will make available the dependency upto all the ligecycle
+phase of the projects. 
+Ex:
+----
+<porject ......>
+---------------
+   <dependencies>
+   ---------------
+      <dependency>
+        <groupid>org.hibernate</groupid>
+        <artifactid>hibernate-core</artifactid>
+        <version>3.5.6-final</version>
+        <scope>compile</scope>
+      </dependency>
+      -------------
+   </dependencies>
+---------------
+</project>
+
+
+2. Provided:
+-------------
+It will make available dependencies upto compile phase and Testing phase, it will not provide
+libraries at Runtime, at runtime, may be Containers will provide the required API support to the
+applicaitons.
+EX:
+----
+<porject ......>
+---------------
+   <dependencies>
+   ---------------
+      <dependency>
+        <groupid>javax.servlet</groupid>
+        <artifactid>servlet-api</artifactid>
+        <version>3.0.0-final</version>
+        <scope>provided</scope>
+      </dependency>
+      -------------
+   </dependencies>
+---------------
+</project>
+
+
+3. Runtime:
+-----------
+To make available dependencies at runtime only, not at compile time we have to use Runtime scope.
+EX:
+----
+<porject ......>
+---------------
+   <dependencies>
+   ---------------
+      <dependency>
+        <groupid>com.thoughtworks.xstream</groupid>
+        <artifactid>xstream</artifactid>
+        <version>1.2.0</version>
+        <scope>runtime</scope>
+      </dependency>
+      -------------
+   </dependencies>
+---------------
+</project>
+
+
+4. Test:
+----------
+To make available libraries for Testing.
+EX:
+----
+<porject ......>
+---------------
+   <dependencies>
+   ---------------
+      <dependency>
+        <groupid>junit</groupid>
+        <artifactid>junit</artifactid>
+        <version>4.0.0</version>
+        <scope>test</scope>
+      </dependency>
+      -------------
+   </dependencies>
+---------------
+</project>
+
+
+5. System:
+-----------
+<porject ......>
+---------------
+   <dependencies>
+   ---------------
+      <dependency>
+        <groupid>somegroupid</groupid>
+        <artifactid>someartifactid</artifactid>
+        <version>version</version>
+        <scope>system</scope>
+        <systempath>apps\app.war\WEB-INF\lib\Expilict_Jar </systempath>
+      </dependency>
+      -------------
+   </dependencies>
+---------------
+</project>
+
+
+6. import:
+----------
+<porject ......>
+---------------
+  <dependencyManagement>
+   <dependencies>
+   ---------------
+      <dependency>
+        <groupid>groupid</groupid>
+        <artifactid>artifactid</artifactid>
+        <version>SNAPSHOT</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
+      -------------
+   </dependencies>
+  </dependencyManagement>
+---------------
+</project>
+
+
+4. Project Inheritance:
+-----------------------
+pom1.xml
+---------
+<project....>
+   <modelVersion>4.0.0</modelversion>
+   <groupid>com.cts</groupid>
+   <artifactid>my-parent</artifactid>
+   <version>0.0.1-SNAPSHOT</version>
+   <packaging>pom</packaging>
+   ----------
+   ----------
+</project>
+
+pom2.xml
+---------
+<project....>
+   <parent>
+     <groupid>com.cts</groupid>
+     <artifactid>my-parent</artifactid>
+     <version>0.0.1-SNAPSHOT</version>
+   </parent>
+   ----------
+   ----------
+</project>
+
+
+5. Build Configurations
+6. Build Profiles
+
