@@ -1,0 +1,239 @@
+Frameworks:
+-----------
+1. Hibernate
+2. Spring
+3. Web Services
+
+1. Hibernate:
+-------------
+--> Hibernate is ORM[Object-Relational Mapping] product/implementaiton/Tool
+
+1. Introduction
+    Serialization and Deserialization
+    JDBS
+    ORM
+      ----EJBs-Entity Beans
+      ----JPA
+      ----Hibernate
+              ------
+              ------
+      Hibernate Arch
+      Hibernate Features
+
+2. Steps to prepare Hibernate Applications
+    1. POJO class/ Persitence Class
+    2. Hibernate Mapping File
+    3. Hibernate Configuration File
+    4. Client Appl
+
+3. Hibernate Application
+   Core Java<-------> Hibernate
+   GUI Appl<--------> Hibernate
+   Servlets<--------> Hibernate
+   JSPs  <----------> Hibernate
+   Struts <----------> Hiberante
+
+4. Hibernate Code Generations Tools:
+   1. Schema Export
+   2. Schema Update
+   3. Code Generation
+
+5. Hibernate Primary Key Generation Algorithms.
+
+6. Hibernate Connection Pooling
+     Inbuilt Connection Pooling Mechanism
+     Third Party vendors provided connection pooing mechanism
+          DBCP, Proxool, C3P0
+     Web logic Server Provided connection through JNDI Server.
+
+7. Hibernate Transaction Management:
+     ACID properties
+     Automicity --> Non-Auto-Commit
+     Isolation Levels
+
+8. HQL[Hiberanate Query Language]
+     from Employee; -------> select *from emp1;
+
+9. Native SQL
+
+10. Criterion API
+
+11. Hibernate Mapping
+     1. Basic OR Mapping
+     2. Component Mapping
+     3. Inheritance Mapping
+     4. Associations Mapping
+
+12. Hibernate Filters
+
+13. Cache Mechanism
+     I-Cache
+     II-cache
+
+14. Hibernate5.x Features
+
+15. JPA Basics
+
+
+IDE: Eclipse IDE, NetBeans IDE
+Databases: Oracle, MySQL
+
+
+Introduction:
+-------------
+Enterprise: It is a Business organization or collection of organizations runnig a single
+            label.
+Enterprise Application: It is a software applicaiton designed for an enterprise to  
+simplify the internal Business processing.
+
+To prepare enterprise applicaitons, we have to provide the following three layer.
+1. Presentation Layer or user interface layer
+--> To improve look and feel to the enterprise appl
+--> It is starting point to the appl inorder to access
+--> To take data from users and to submit data to appl
+--> To perform client side data validations with javascript functions
+--> To submit defferent types of requests from client to server Ex. POST, GET, HEAD,....
+--> Presentation Logic
+--> AWT, SWING, HTML, JSP, Free Marker, Velocity,.....
+
+
+2. Business processing layer or business layer
+--> It is heart of the enterprise application.
+--> To define and execute the business rules and regulations which are req by the clients exactly
+--> Business Logic
+--> Servlet, JSP[Rarely], EJB-Session Beans,...
+
+3. Data layer or Data Storage and access layer or persistence layer
+--> To interact with Database and to achieve data persistency
+--> Persistence Logic
+--> JDBC, EJBs-Entity Beans, JPA, DAOs.....
+
+
+Hibernate -----> Persistence Layer
+Struts, JSF ---> Presentaion Layer
+Spring ------> All the enterprise appl layers.
+
+Data Persistency:
+------------------
+Representing data permanently in back end systems is called as data persistency.
+
+Data persistency Operations: To make data persistency if we perform operations with Back
+END Systems then that Operations are called as Data persistence operations.
+Ex. CRUD
+C ---> Create / Inserting Data
+R ---> Read / Retrieve
+U ---> Update
+D ---> Delete
+
+Data Persistence Tech: To achieve data persistency,if we use any tech then it is called
+as Data persistence Tech
+EX. JDBC, Hibernate, JPA, EJB-Entity Beans..........
+
+In enterprise applicaitons, to perform data persistency, we will use the following tech
+w.r.t JAVa:
+
+1. Serialization and Deserialization
+2. JDBC
+3. ORM
+   1. EJBs Entity Beans
+   2. Hibernate
+   3. JPA
+   4. Open JPA
+   5. Toplink
+   6. iBatis
+      ------
+      ------
+
+1. Serialization and Deserialization:
+-------------------------------------
+The process of seperating data from an object and storing that data in a flat file is 
+called as Serialization.
+
+The process of Regenerating an object on the basis of data is called as Deserialization.
+
+1. ObjectOutputStream ---> For Serialization
+2. ObjectInputStream ----> For Deserialization
+
+FileOutputStream
+FileInputStream  
+
+
+2. Data Persistency through JDBC:
+----------------------------------
+--> JDBC is a step by step process or a Tech or an API, it will provide very good env
+to interact with databases from Java applications inorder to perform database operations
+from java applications.
+
+--> JDBC is an abstraction[Colleciton of interface] provided by SUN Microsystems and 
+implemented by all the database vendors.
+
+--> In JDBC applications, we need driver, It will map Java API representaions to SQL
+API representations.
+
+Oracle:
+Driver Class: oracle.jdbc.OracleDriver
+Driver URL: jdbc:oracle:thin:@localhost:1521:xe
+
+MySQL:
+Driver Class: com.mysql.cj.jdbc.Driver[MySQL5.7 versions]
+              com.mysql.jdbc.Driver[Upto MySQL5.5 version]
+Driver URL: jdbc:mysql://localhost:3306/db_Name
+
+Steps tp prepare JDBC Applications:
+1. Load and register driver
+2. Establish connection between java applicaiton and database.
+3. Create either Statement or PreaparedStatement or CallableStatement
+4. Write and execute SQL queries
+5. Close the resources
+
+Requirement of ORM:
+--------------------
+ORM is providing mapping between object oriented data model elemetns to relational data
+model elemetns either through XML document or through annotaitons
+
+Class --------> Table
+Object -------> Record
+ID prop ------> OK Column
+Normal prop---> Normal Column
+
+Mismatiches between Object Oriented data model and relational data model:
+1. Granualarity Mismatch
+2. Sub types mismatch
+3. Associations Mismatch
+4. Identity Mismatch
+5. Cost mismatch
+   ---------
+   ---------
+
+1. Granualarity Mismatch:
+------------------------
+
+2. Sub types mismatch:
+----------------------
+3. Associations Mismatch:
+-------------------------
+1. One-To-One Association
+2. One-To-Many Association
+3. Many-To-One Association
+4. Many-To-Many Association
+
+By declaring one class reference variable in another class is assocoation.
+
+class Employee{
+   String eid;
+   String ename;
+   String esal;
+   String eaddr;
+   Account acc;
+}
+
+class Account{
+   String accNo;
+   String accName;
+   String accType;
+   ----
+}
+
+4. Identity Mismatch:
+---------------------
+  
