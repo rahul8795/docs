@@ -236,4 +236,102 @@ class Account{
 
 4. Identity Mismatch:
 ---------------------
+
+
+ORM
+--> Hibernate
+--> EJBs - Entity Beans
+--> JPA
+--> iBatis
+--> Open JPA
+--> Toplink
+     ---------
+     --------
+
+Q) To provide data persistency we have already EJBs entity Beans then what is the 
+requirement to use Hibernate?
+---------------------------------------------------------------------------------------------------------------
+Ans:
+-----
+1. EJBs entity Beans is Heavy Weight Persistency Solutions.
+    Hibernate is light weight persistency Solution
+
+2. EJBs Entity Beans must required Application Server Envioronment
+    Hibernate applications are executed with or without the application servers.
+
+3. EJBs entity beans is more API dependent.
+   Hibernate is less API dependent.
+
+4. EJBs entity beans are not following POJO classes convention.
+    HIbernate is following POJO classes convention.
+    Note: Plain Old Java Object, it is a normal java bean class, it will not extend or
+             implement predefined library.
+
+5. In case of EJBs entity Beans, debugging and testing are very much difficult
+   In case of HIbernate, debugging and testing are very simple.
+
+6. EJBs entity beans portability is very less.
+    Hibernate portability is more.
+
+7. EJBs entity beans is slower Date persistency mechanism.
+    Hibernate is faster data persistency mechanism
+
+8. In EJBs entity beans, one-to-one relations must be required between java classes and 
+    database tables.
+    In hibernate, it is not mandatory to manage one-to-one association between entiry
+    classes and database tables.
+
+9. In case of EJBs entity beans, Bean components are allowed for inheritance directly.
+    In case of Hibernate, it is possible to define inheritance relation between bean
+    classes as per the requirement.
+
+10. EJBs entity beans is applicable for only Enterprise applications where application
+      server environment is exited.
+      Hibernate is applicable for both standalone application where application server env
+      is not exited and enterprise applications where applicaition server env is exited.
+
+Q) What is the differencr between JPA and Hibernate?
+--------------------------------------------------------------------------
+Ans:
+--------
+JPA is an abstraction provided by SUM Microsystems as part of J2EE and it is implemented
+by almost all the application servers and it is provding a set of guidlines to
+implement ORM rules and regulations.
+
+Hibernate is a direct ORM implemented tool, it has implemented all the ORM
+implementations as per JPA gidlines.
+
+Note: Hibernate is having JPA implementaions and ORM implementations 
+inorder to manage data persistency.
+
+
+Hibernate:
+--------------
+Home: SoftTree
+Author: Gavin King
+Tool: ORM implementation Tool
+Type: Open Source Software
+Objective: To simplify Data persistency in Enterprise Applications.
+Initial Version: Hibernate1.0[2001]
+Use Versions: Hibernate3.x / Hibernate4.x
+Latest Version: Hibernate5.x
+
+
+Hibernate Features:
+----------------------------
+--> HIbernate is light weight data persistency Mechanism
+--> It is following POJO classes convestions.
+--> Hibernate is Database independent.
+--> Hibernate is able to execute its applications with or without the application
+     servers.
+--> HIbernate is supported by almost all the servers and IDEs.
+--> Hibernate is having very good cache mechanisms.
+--> Hibernate is having very good inbuilt connection pooling mechnism.
+--> Hibernate is having very good Transactions Support.
+--> Hibernate is having very good collections support.
+--> Hibernate is having very good annotations support.
+--> Hibernate is having Object Oriented, Database Independent and a powerfull query
+     language that is "HQL"[Hibernate Query Language].
+--> Hibernate is having very good Associations and joins support.
+--> 
   
