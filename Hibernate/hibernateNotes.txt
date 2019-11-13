@@ -333,5 +333,8 @@ Hibernate Features:
 --> Hibernate is having Object Oriented, Database Independent and a powerfull query
      language that is "HQL"[Hibernate Query Language].
 --> Hibernate is having very good Associations and joins support.
---> 
+--> Hibernate is having very good mapping support like Inheritance mapping, associations
+     mapping......
+--> Hibernate is having filters features inoder to filter the results.
+
   
