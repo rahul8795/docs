@@ -337,4 +337,442 @@ Hibernate Features:
      mapping......
 --> Hibernate is having filters features inoder to filter the results.
 
+
+Hibernate Arch:
+---------------
+Hibernate Configuration File:
+------------------------------
+It is an XML file, it will provide all the hibernate configuration details like driver class,
+driver URL, db user name, Db password..... which we required to connect with the database.
+
+Hibernate Mapping File:
+------------------------
+Hibernate mapping file is an XML file, it will provide mapping between OODM[Object Oriented Data Model]
+elements and RDM[Relational Data Model like 
+class<------>table
+id prop<----->PK column
+prop<-------->column
+
+Client Appl:
+------------
+Client appl will have resoponsibilities like 
+1. Activate Hibernate Software
+2. Create Persistence Object
+3. Perform Persistence Operation with persistence objedct.
+
+Hibernate Software:
+-------------------
+When HBN S/W activated by client, HBN S/W will take configuration details from configuration file and established
+connection with database.
+When persistence operation performed by client , HBN S/W will prepare the equivalent database dependent native SQL
+query and it will execute that SQL query and generate results from DB to Java appl.
+  
+Hibernate Internal Service:
+--------------------------
+1. JDBC
+2. Connection Pooling
+3. Cache Mechanism
+-----------
+-----------
+
+
+1. Hibernate Configuration File
+2. Hibernate Mapping File
+3. Persistence Object
+4. Client Application
+5. Hibernate Software
+
+Steps To Prepare Hibernate Applicaitons:
+-----------------------------------------
+1. Download Hibernate from Internet and install it.
+2. Create Hibernate Persistence Class
+3. Create Hibernate Mapping File
+4. Create Hibernate Configuration File 
+5. Create Client Application and execute client appl
+
+Note: To do all the above steps, we need the required tables in Databases.
+
+
+1. Download Hibernate from Internet and install it:
+---------------------------------------------------
+1. Download Hibernate JAR file from internet
+2. Create Java project in Eclipse IDE
+3. Create seperate Hibernate library, that is , User defined library in eclipse IDE
+   with all the required Hibernate JARs...
+
+https://sourceforge.net/projects/hibernate/files/latest/download
+Required JArs:
+--------------
+hibernate3.jar
+antlr-2.7.6.jar
+commons-collections-3.1.jar
+dom4j-1.6.1.jar
+javaassist-3.12.0.GA.jar
+jta-1.1.jar
+slf4j-api-1.6.1.jar
+hiberante-jpa-2.0-api-1.0.1.final.jar
+ojdbc6.jar
+
+Note: If we use Eclipse IDE then keep all the above JARs either in Buildpath directly and 
+      prepare a seperate user defined library with the above JARs.
+
+Note: If we don't want to use any IDE then keep all the above JARs in
+ "C:\Program Files\Java\jdk1.8.0_121\jre\lib\ext"
+
+
+
+2. Create Hibernate Persistence Class:
+---------------------------------------
+It is a normal JAVA Bean class, whose objects are able to manage peristence data
+inorder to perform persistence operations like inserting data, searching data, updating 
+data and deleting data.
+
+Guidlines to prepare Persistence Classes:
+1. Persistence class must be a POJO[Plain Old Java Object] class, it must not extend or 
+   implement any predefined library, it is a normal plain java bean class.
+Note: In general, POJO classes are not extended or not implemented any predefined 
+library, but, it is suggestable to implement java.io.Serializable interface.
+
+2. Always, persistence classes must be public, non abstract and non final,because,
+   a) The main intention to declare persistence class as public is to bring scope of
+       the persistence class to Hibernate software inorder to create objects.
+   b) The main intention to declare persistence class as non abstract is to allow to 
+      create objects for persistence class.
+   c) The main intetion to declare persistence classes as non final is to allow
+      inheritance between persistence classes inorder to improve code reusability.
+
+3. In persistence classes, we have to declare all properties w.r.t the database table
+   columns, where persistence class properties names and database table column names need
+   not be same, but, the data types must be compatible. 
+  
+4. In persistence classes, we must provide all properties as "private" properties.
+
+5. In persistence classes, we msut provide a seperate set of setXXX() and getXXX()
+   methods for each and every property.
+
+6. In persistence classes, all the methods including setXXX() and getXXX() must be
+   declared as "public"
+Note: The main intention of declaring all properties as "private" and all methods as 
+     "public" is to transfer the data through the methods inorder to improve Encapsulation 
+      in persistence classes.
+
+7. In persistence classes, it is manadatory to manage an ID property, it must represent 
+   Primary key column in the respective database table.
+
+8. In persistence classes, if we want to provide any constructor then we must provide a 
+   public and 0-arg construcotor, because, while creating objects for persistence classes
+   Hibernate Software will search and execute only pulbic and 0-arg construtor.
+
+9. In persistence classes, if we want to provide our own customizaion while checking 
+   whether two persistence objects are same or not then it is suggestable to override
+   equals() method in persistence classes.
+
+10. In persistence classes, it is suggestable to override hashCode() method if we want to 
+    provide customization while generating persistence Objects Hashcode values.
+
+EX:
+---
+package com.cts.pojo;
+public class User implements Serializable{
+private String uname;
+private String upwd;
+
+public void setUname(Stirng uname){
+  this.uname = uname;
+}
+public void setUpwd(String upwd){
+  this.upwd = upwd;
+}
+public String getUname()
+  return uname;
+}
+public String getUpwd()
+  return upwd;
+}
+}
+
+
+3. Create Hibernate Mapping File:
+-----------------------------------
+--> Its main intention is to provide mapping between object oriented data model elements
+and relational model elements like below.
+Class --------> Table
+Id prop ------> PK Column
+prop ---------> Column
+
+It is an XML document in Hibernate applications, it will provide the following
+configurations in Hibernate applicaitons
+1. Basis O-R mapping
+2. Component Mapping
+3. Inheritacne Mapping
+4. Associations Mapping
+5. Filters Configurations
+6. Procedures and Functions Configuration
+   ---------
+   ---------
+
+In Basis Hibernate applicaitons, we need Baiss O-R mapping, for this, we have to use the
+following tags.
+
+<!DOCTYPE ------>
+<hibernate-mapping>
+  <class name="--" table="-->
+    <id name="--" column="--"/>
+    <property name="--" column="--"/>
+    ---------
+    ---------
+  </class>
+</hibernate-mapping>
+Note: If the POJO classes properties names and table column names are same in case 
+insensitive manner then it is optional to provide column attribute in <id> tag and 
+<property> tag.
+
+Note: POJO-Class_Name.hbm.xml (Name to save hiberanate xml file)
+
+EX:
+---
+Employee.hbm.xml
+----------------
+<!DOCTYPE ------>
+<hibernate-mapping>
+  <class name="com.cts.pojo.Employee" table="emp1">
+    <id name="eno" column="ENO"/>
+    <property name="ename" column="ENAME"/>
+    <property name="esal" column="ESAL"/>
+    <property name="eaddr" column="EADDR"/>
+  </class>
+</hibernate-mapping>
+
+Employee.java
+--------------
+public class Employee{
+  private int eno;
+  private String ename;
+  private float esal;
+  private String eaddr;
+  setXXX() and getXXX();
+}
+
+emp1
+|ENO|ENAME|ESAL|EADDR|
+
+Q) In single hibernate appliaction, it is possible to provide more than one Mapping file?
+------------------------------------------------------------------------------------------
+Ans:
+-----
+Yes, it is possible to provide more than one mapping file in sigle hibernate applicaiton.
+Note: In general, we will prepare a seperate mapping file for each and every POJO class.
+
+Q) Is it manadatory to provide mapping file in Hibernate applicaitons for the entities
+configurations?
+-----------------------------------------------------------------------------------------
+Ans:
+-----
+Upto Hibernate3.2.4 version, it is manadatory to provide mapping files for entities
+conffiguratios, but, from Hibernate3.2.5 version onwards, mapping files are optional,
+alternativily we are able to use "Annotations".
+
+POJO-Class_Name.hbm.xml (Name to save hiberanate xml file)
+
+
+4. Create Hibernate Configuration File :
+----------------------------------------
+It is an XML document, it will provide all the Hibernate cofiguration details which are
+required to interact with database.
+1. Driver class configuration
+2. Driver URL configuration
+3. Database user configuration
+4. Database password configuration
+5. Dialect Class configuration
+6. Mapping File configuration
+7. Connection Pooling configuration
+8. Cache Mechanism configuration
+9. Transactions Isolation level configuration
+  ---------------
+  ---------------
+
+<!DOCTYPE ----> 
+<hiberante-configuration>
+  <sessionfactory>
+     <property name="--"> value </property>
+      --------
+     <mapping resource="--"/>
+     -------
+  </sessionfactory>
+</hiberante-configuration>
+
+EX:
+---
+<!DOCTYPE ----> 
+<hiberante-configuration>
+  <sessionfactory>
+     <property name="hibernate.connection.driver_class"> oracle.jdbc.OracleDriver </property>
+      <property name="hibernate.connection.url">
+         jdbc:oracle:thin:@localhost:1521:xe
+      </property>
+      <property name"hibernate.connection.uername">system</property>
+      <property name="hibernate.conncetion.password">root</property>
+      <property name="hibernate.dialect">org.hibernate.dialect.OracleDialect</property>
+     <mapping resource="Employee.hbm.xml"/>
+     -------
+  </sessionfactory>
+</hiberante-configuration>
+
+Note: hibernate.cfg.xml (use this name to save configuration xml file)
+
+Note: We can provide more than one configuration file, when we are using more than one database in our applicaiton.
+
+5. Create Client Application and execute client appl:
+-------------------------------------------------------
+The main intention of the client application is to activate Hibernate sofrware,
+preaparing persistence object and performing persistence operations.
+
+Steps:
+------
+1. Create Configuration Object and encapsulate Hibernate configuraiton details from
+Hibernate configuration file.
+2. Create SessionFactory Object
+3. Create Session Object
+4. Create Transaction Object
+5. Perform Persistence operations by creating persistence object
+6. Commit/Rollback the results.
+7. Close the session and SessionFactory
+
+1. Create Configuraiton Object:
+--------------------------------
+The main intention of the configuraiton object is to manage all the configuraiton details 
+which are required by the Hibernate Software inorder to interact with database.
+
+To represent configuration object, Hiberante has provided a seperate predefined class
+in the form of org.hiberante.cfg.Configuration
+Ex: Configuration cfg = new Configuration();
+    cfg.configure();
+
+public Configuration configure() ---> hibernate.cfg.xml file
+public Configuration configure(String cfg_File) ---> MyConfig.xml
+pulbic Configuration configure(File f) ---> File object
+public Configuration configure(URL url) ---> Network
+
+It is Heavy weight Object and it is Singleton object upto a particular Database and it is Threadsafe upto a particular Database.
+
+Q) Is it possible to create More than one configuration object in a single Hibernate application?
+--------------------------------------------------------------------------------------------------
+Ans:
+----
+Yes, It is possible to provide more than one Configuration object in single Hibernate application,
+but, we have to use more than one configuration file and more than one DB.
+
+More than one Conf object <--- More than one Conf file <-- More than one DB
+
+
+2. Create SessionFactory Object:
+---------------------------------
+The main intention of SeesionFactory is to get all the required configuration details
+from Configuraiton file and it will load and register the driver, it will establish
+connection between Hibernate appl and Database.......
+
+It is a Factory for Session Object.
+
+To represent SessionFactory object, Hibernate has provided a predefined interface in 
+the form of org.hibernate.SessionFactory.
+
+To create SessionFactory object, Configuration class has provided the following method.
+
+public SessionFactory buildSessionFactory()
+Ex: SessionFactory sf = cfg.buildSessionFactory();
+
+SeesionFactory is Threadsafe upto a single Database.
+
+3. Create Session Object:
+---------------------------
+The main intention of the Session obejct is to create an environment inorder to perform
+database operations.
+
+It will provide predefined library to perform persistence operations in Hibernate
+applications.
+
+To represent Session object, Hibernate has provided a predefined interface in the form
+of "org.hibernate.Session".
+
+To get Session object, we have to use the following method from SessionFactory.
+
+public Session openSession()
+Ex: Session session = sf.openSession();
+
+It is not Threadsafe.
+
+4. Create Transaction Object:
+------------------------------
+org.hibernate.Transaction (interface)
+
+1. public Transaction beginTransaction()
+--> It will create Transaction object and it will start transaction by default.
+
+2. public Transaction getTransaction()
+--> It will create Transaction object, by default, it is not started.
+--> To start Transaction we have to use the following method.
+    public Transaciton begin()
+EX: Transaction tx = session.beginTransacion();
+Ex: Transaciton tx = session.getTransaction();
+    tx.begin()
+
+5. Perform Persistence Operations:
+-----------------------------------
+1. To insert persistence Object in DB.
+   a) save()
+   b) persist()
+
+2. To update a record in database.
+   a) update()
+   b) saveOrUpdate()
+
+3. To delete a record from database
+   a) delete(0
+
+4. To retrieve a record from database
+   a) get()
+   b) load()
+Note: All the above methods are defined in ord.hibernate.Session interface.
+
+Q)What is the difference between save() method and persist() method?
+---------------------------------------------------------------------
+Ans:
+----
+Both the methods are used to insert a persistence object/ a record in database, but, if
+we use save() method then Hibernate Software will insert a record in DB and return its
+primary key value, but, if we use persist() method tehn it will insert a record in DB
+and it will not return primary key value.
+
+public Serializable save(Object obj)
+public void persist(Object obj)
+
+
+Q)What is the difference between update() method and saveOrUpdate() method?
+--------------------------------------------------------------------------
+Ans:
+----
+In Hibernate applicaitons, if we use update() operation to perform updations then 
+Hibernate Software will check whether the respective record is exited or not in
+Database, if the record is exited then Hibernate Software will perform updations in
+the respective record. If the respective record is not exited in database then Hibernate
+Software may raise an Exception.
+
+public void update(Object obj)
+
+In Hibernate applications, if we use saveOrUpdate() method to perform update operation
+then Hibernate Software will check whether the respective record is exited or not in 
+database tabel, if the record is existed then Hibernate Software will perform updations
+on the respective record,if respective record is not existed then Hiberante Software
+will perform save operation.
+
+public void saveOrUpdate(Object obj)
+
+delete(): It can be used to delete a record from database table.
+public void delete(Object obj)
+
+Q) What is the difference between get() and load() method?
+-----------------------------------------------------------
+Ans:
+------
+
   
