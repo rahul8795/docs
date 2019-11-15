@@ -775,4 +775,52 @@ Q) What is the difference between get() and load() method?
 Ans:
 ------
 
+Note: All the above methods are used to perform single record manipulation only.
+
+If we want to perform manipulation with multiple records like retrieving multiple
+records, updating multiple records, daleting multiple records, then we have to use
+1. HQL
+2. Native SQL
+3. Criterion API
+
+6. Perform either commit / rollback operation in Hibernate software:
+--------------------------------------------------------------------
+When we perform non select operations in Hibernate applications then must perform either
+commit or rollback operations
+
+public void commit()
+public void rollback()
+
+7. Close the resources:
+------------------------
+At the end of Hibernate applications, it is convention to close Session and 
+SessionFactory.
+
+public void close()
+
+session.close();
+sessionFactory.close();
+-------------------------------------------------------------------------------------------
+0. Download Hibernate JARs from internet
+1. Create Java Project in Eclipse IDE.
+2. Create User defined library for Hibernate JARs and ojdbc.6jar in eclipse IDE.
+3. Create Persistence Class
+4. Create Mapping File
+5. Create Configuratation File
+6. Create Client Application and Run Cleint Application
+
+Note: To run Hibernate applcation, we need a table in  database.
+
+Required JArs:
+--------------
+hibernate3.jar
+antlr-2.7.6.jar
+commons-collections-3.1.jar
+dom4j-1.6.1.jar
+javaassist-3.12.0.GA.jar
+jta-1.1.jar
+slf4j-api-1.6.1.jar
+hiberante-jpa-2.0-api-1.0.1.final.jar
+ojdbc6.jar
+
   
