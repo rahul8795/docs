@@ -823,4 +823,119 @@ slf4j-api-1.6.1.jar
 hiberante-jpa-2.0-api-1.0.1.final.jar
 ojdbc6.jar
 
+
+Hibernate:
+Example on save and persist() methods:
+Employee.java
+--------------
+package com.cts.pojo;
+
+public class Employee {
+	private int eno;
+	private String ename;
+	private float esal;
+	private String eaddr;
+	
+	public int getEno() {
+		return eno;
+	}
+	public void setEno(int eno) {
+		this.eno = eno;
+	}
+	public String getEname() {
+		return ename;
+	}
+	public void setEname(String ename) {
+		this.ename = ename;
+	}
+	public float getEsal() {
+		return esal;
+	}
+	public void setEsal(float esal) {
+		this.esal = esal;
+	}
+	public String getEaddr() {
+		return eaddr;
+	}
+	public void setEaddr(String eaddr) {
+		this.eaddr = eaddr;
+	}
+	
+}
+
+Employee.hbm.xml
+-----------------
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.cts.pojo.Employee" table="emp1">
+		<id name="eno" column="ENO"/>
+		<property name="ename" column="ENAME"/>
+		<property name="esal" column="ESAL"/>
+		<property name="eaddr" column="EADDR"/>
+		
+	</class>
+</hibernate-mapping> 
+
+hibernate.cfg.xml
+-----------------
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.cts.pojo.Employee" table="emp1">
+		<id name="eno" column="ENO"/>
+		<property name="ename" column="ENAME"/>
+		<property name="esal" column="ESAL"/>
+		<property name="eaddr" column="EADDR"/>
+		
+	</class>
+</hibernate-mapping>
+
+Test.java
+---------
+package com.cts.test;
+
+
+import java.util.Date;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
+import com.cts.pojo.Employee;
+public class Test {
+
+	public static void main(String[] args) throws Exception {
+		System.out.println(new Date(System.currentTimeMillis()));
+		Configuration config = new Configuration();
+		config.configure();
+		SessionFactory sessionFactory = config.buildSessionFactory();
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		Employee emp = new Employee();
+		emp.setEno(999);
+		emp.setEname("HHH");
+		emp.setEsal(60000);
+		emp.setEaddr("Ban");
+		Integer eno1 = (Integer)session.save(emp);
+		//int eno = eno1.intValue();
+		session.persist(emp);
+		tx.commit();
+		System.out.println("Employee Inserted Successfully");
+		System.out.println(new Date(System.currentTimeMillis()));
+//		if(eno == 444){
+//			System.out.println("Employee Inserted Succesfully");
+//		}else{
+//			System.out.println("Employee Insertion Failure");
+//		}
+		session.close();
+		sessionFactory.close();
+	}
+
+}
   
