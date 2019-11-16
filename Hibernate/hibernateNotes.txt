@@ -1061,4 +1061,122 @@ public class Test {
 
 }
 
+
+
+Hibernate
+----------
+Example on delete() methods:
+-----------------------------
+Employee.java
+---------------
+package com.cts.pojo;
+
+public class Employee {
+	private int eno;
+	private String ename;
+	private float esal;
+	private String eaddr;
+	public int getEno() {
+		return eno;
+	}
+	public void setEno(int eno) {
+		this.eno = eno;
+	}
+	public String getEname() {
+		return ename;
+	}
+	public void setEname(String ename) {
+		this.ename = ename;
+	}
+	public float getEsal() {
+		return esal;
+	}
+	public void setEsal(float esal) {
+		this.esal = esal;
+	}
+	public String getEaddr() {
+		return eaddr;
+	}
+	public void setEaddr(String eaddr) {
+		this.eaddr = eaddr;
+	}
+	
+}
+
+Employee.hbm.xml
+-----------------
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.cts.pojo.Employee" table="emp1">
+		<id name="eno"/>
+		<property name="ename"/>	
+		<property name="esal"/>
+		<property name="eaddr"/>
+		</class>
+</hibernate-mapping>
+
+Configuration.cfg.xml
+----------------------
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
+		<property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:xe</property>
+		<property name="hibernate.connection.username">system</property>
+		<property name="hibernate.connection.password">root</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.OracleDialect</property>
+		<property name="hibernate.show_sql">true</property>
+		<mapping resource="Employee.hbm.xml"/>
+	</session-factory>
+</hibernate-configuration>
+
+Test.java
+----------
+package com.cts.test;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
+import com.cts.pojo.Employee;
+
+public class Test {
+
+	public static void main(String[] args) {
+		Configuration config = null;
+		SessionFactory sessionFactory = null;
+		Session session = null;
+		Transaction tx = null;
+		
+		try{
+			config = new Configuration();
+			config.configure();
+			sessionFactory = config.buildSessionFactory();
+			session = sessionFactory.openSession();
+			tx = session.beginTransaction();
+			tx.begin();
+			Employee emp = new Employee();
+			emp.setEno(124);
+			session.delete(emp);
+			tx.commit();
+			System.out.println("Employee deleted Succesfully");
+			
+		}catch(Exception e){
+			//tx.rollback();
+			System.out.println("Employee deletion Failure");
+			e.printStackTrace();
+		}finally{
+			session.close();
+			sessionFactory.close();
+		}
+	}
+
+}
   
