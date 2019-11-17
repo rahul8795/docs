@@ -1180,3 +1180,46 @@ public class Test {
 
 }
   
+
+
+Q)What is the difference between get() method and load() method from Session in
+Hibernate?
+--------------------------------------------------------------------------------------------------------------
+Ans:
+-------
+Both the methods are used to retrieve a record from database in the form of Entity / POJO
+object.
+
+public Object get(Class class, Serializable PK_Val)throws HibernateException
+public Object get(String entity_Class, Serializable PK_Val)throws HibernateException
+
+
+public Object load(Class class, Serializable PK_Val)throws HibernateException
+public Object load(String entity_Class, Serializable PK_Val)throws HibernateException
+
+To get record form database, if we use get() method then Hibernate Software will perform
+the following actions.
+1. Hibernate Software will interact with database and checks whether the
+    respective record is exited or not on the basis of the provided primary key value.
+2. If the record is existed .then Hibernate Software will return in the form
+    of POJO object to Hibernate Client Application.
+3. If the record is not existed then Hibernate Software will return null value without
+    raising any Exception.
+
+To get record from Database, if we use load() method then Hibernate Software will
+perform the following actions.
+1. Hibernate Software will create a Proxy Object[Dupicate/Fake Object] for the
+    respective entity class with the provided primary key value without interacting
+    with the database.
+2. When we access non-primary key value from the proxy object then Hibernate Software
+    will interact with database and it will check whether record is exited or not on the basis of 
+    the provided primary key value.
+3. If the record is exited then Hibernate Software will return that record data in the form of
+    POJO class object.
+4. If the record is not exited then Hibernate Software will raise an Exception like
+    "org.hibernate.ObjectNotFoundExceptin".
+
+Note: get() method is performing early/eagre loading and load() method is performing
+          lazy loading.
+Ex:
+--------
