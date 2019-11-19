@@ -1,0 +1,796 @@
+Need of Collections:
+---------------------
+--> An array is an indexed Collection of fixed number of homogeneous data elements.
+--> The main advantage of Arrays is we can represent multople values with a single
+    variable. So that reusability of the code will be improved.
+
+Limitations of Object type  Arrays:
+------------------------------------
+1. Arrays are fixed in size i.e. once we created an array with some size there is no chance 
+   of incresing or decreasing it's size based on our requirement. Hence to use arrays 
+   compulsory we shhould know the size in advance which not possible always.
+2. Arrays can hold only homogeneous data elements.
+Ex:-
+Student[] s = new Student[10000];
+s[0] = new Student(); Correct
+s[1] = new Customer(); wrong
+
+But we can resolve this problem by using objects arrays.
+Object [] o = new Object[10000];
+o[0] = new Student(); Correct
+o[1] = new Customer(); Correct
+
+3. Array concept is not based on some standard data structure hence readymade method support is 
+   not available for evey requirement we have to write the code explicitly. Which is complexity 
+   of programming.
+
+To overcome the above limotations of Arrays we should go for Collections.
+
+--> Collections are growbalble in nature. i.e. based on our requirement we can increse or decerease
+    the size.
+--> Collections can hold both homogeneous and Heterogeneous elements.
+--> Every collection class is implemented based on some standard data structure, Hence readymade method
+    is support available for every requirement. Being a programmer we have to use this method and we are
+    not responsible to provide imolementaion.
+
+Difference between Arrays and Collections:
+-------------------------------------------
+1) Arrays are fixed in size.
+   Collections are qrowable in nature.i.e based on our qequirement we can increase or decrease the size.
+
+2) WRT memory arrays are not recommended to use.
+   WRT memory collecitons are recommended to use.
+
+3) WRT performance Arrays are recommended to use.
+   WRT performance collecitons are not recommended to use.
+
+4) Arrays can hold only homogeneous datatype elements.
+   Collecitons can hold both homogeneous and heterogeneous elements.
+
+5) There are no underlying data structure for arrays and hence readymade method support is not available.
+   Every collections class is implemented based on some standard data strucutre. Hence readymade method 
+   support is availbale for every requirement.
+
+6) Array can hold both primitives and object types.
+   Collecitons can hold only objects but not primitives.
+
+Collection and Collection Framework:
+--------------------------------------
+Collection:
+----------
+If we want to represent a group of individual objects as Single entity then we shoud go for Colleciton.
+
+Collection Framework:
+----------------------  
+If defiens several classes and interface which can be used a group of objects as single entity.
+
+Note: In java - Collection,Collection Framework
+      In C++  - Container, STL(Standard Template Library)
+
+
+9 key intefaces of Collection Framework:
+-----------------------------------------
+1) Collection(I):
+-----------------
+   .) If we want to represent a group of individual object as a single entity then we should go for Collection.
+   .) Colection interface defines the most common methods which are applicable for any Collection object.
+   .) In general colleciton interface is considered as root interface of Collection Framework.
+
+Note: There is no concrete class which implements collection interface directly.
+
+Differecne between Collcetion and Collecitons:
+------------------------------------------------
+--> Collection is an interface which can be used to represent a group of individual objects as a single entity.
+    Collectiosn is an utility class present in java.util.package to define several utility methods (like Sorting, Searching,...) 
+    for Collection objects.
+
+2) List(I):
+------------
+--> List is child interface of Collection.
+--> If we want to represent a group of individual objects as a single entity where duplicates are allowed and insertion order 
+    preserved then we should go for List.
+
+Collection(1.2v)
+  ---List(1.2v)
+        ----ArrayList(1.2v)
+        ----LinkedList(1.2v)
+        ----Vector(1.0v)
+               --------Stack(1.0v)
+
+Note: Vector and Stack classes are re-engineer in 1.2v to implement list interface.
+
+3) Set(I):
+----------
+--> It is the child interface of Collection.
+--> If we want to represent a group of individual objects as a single entity where duplicates are not allowed and insertion order
+    not preserved then we sholud go for Set.
+
+Collection(1.2v)
+------Set(1.2v)
+      ---HashSet(1.2v)
+           -----LinkedHashSet(1.4)
+
+Difference between List and Set:
+----------------------------------
+1) List- Duplicates are allowed
+         Insertion order preserved
+   Set - Duplicates are not allowed
+         Insertion order not preserved
+
+
+4) Sorted Set(I):
+------------------
+--> It is child interface of Set.
+--> If we want to represent a group of individual objects as a single entity where duplicates are not allowed but all objects
+    should be inserted according to some sorting order then we should go for SortedSet.
+
+5) Navigable Set(I):
+---------------------
+--> It is child interface of SortedSet it defines several methods for navigation purpose.
+
+Collection(1.2v)
+------Set(1.2v)
+       ------SortedSet(1.2v)
+             -------NavigableSet(1.6v)
+                   -----------TreeSet(1.2v)
+
+
+6) Queue:
+---------
+--> It is child interface of Collection.
+--> If we want to represent a group of individual objects prior to processing then we should go for Queue.
+
+Ex. before sending a mail all mail id's we have to store somewhere and in which order we saved in the same order mail's should be delivered
+    in which order we saved in the same order mail's should be delivered(First in First Out) for this requirement Queue concept is the best
+    choice.
+
+Collection(1.2v)
+-----Queue(1.5v)
+     -----PriorityQueue(1.5v)
+     -----BlockingQueue(1.5v)
+             -------LinkedBlockingQueue(1.5v)
+             -------PriorityBlockingQueue(1.5v)
+
+Note:
+--> All the above interface(Collection,List,Set,SortedSet,NavigableSet and Queue) meant for representing a group of individual objects.
+--> If we want to represent a group of objects as key value pairs then we should go for Map inteface.
+
+7) Map:
+---------
+--> Map is not the child interface of Collection.
+--> If we want to represent a group of individual objects as key value pairs then should go for Map.
+Ex.  Roll No     Name
+     101         Durga
+     102         Ravi
+     103         Venkat
+
+Both key and value are objects, duplicated keys are not allowed but values can be duplicated.
+
+
+Map(1.2v)
+---HashMap(1.2v)
+   ---LinkedHashMap(1.0v)
+---WeakHashMap(1.2v)
+---IdentityHashMap(1.4v)
+-Dictionary(1.0v)(Absract Class)
+---Hashtable(1.0v)
+   ---Properties(1.0v)
+
+8) SortedMap:
+---------------
+--> It is child interface of map.
+--> If we want to represent a group of key value pairs according to some sorting order of keys then we should go for SortedMap
+
+Map(1.2v)
+----SortedMap(1.2v)
+
+9) NavigableMap:
+-----------------
+--> It is child interface of SortedMap, it defines several utility methods for navigation purpose.
+
+Map(1.2v)
+-----SortedMap(1.2v)
+     -----NavigableMap(1.2v)
+           ------TreeMap(1.2v)
+
+
+Collection Inteface:
+---------------------
+--> If we want to represent a group of individual objects as a single entity then we should go for Collection.
+--> In general collection interface is considered as root interface on Collection Framework.
+--> Collection interface defines the most common methods which are applicable for any colletion object.
+
+Important methods of Collection Interface:
+------------------------------------------
+boolean add(Object o)
+boolean addAll(Collection c)
+boolean remove(Object o)
+boolean removeAll(Collection c)
+boolean reatainAll(Collection c)
+void clear()
+boolean contains(Object o)
+boolean (Collection c)
+boolean isEmpty()
+int size()
+Obejct[] toArray()
+Itertor iterator()
+
+Note: Collection interface doesn't contain any method to retrieve objects there is no concrete class which implements
+      colleciton class directly.
+
+List Interface:
+---------------
+--> It is child interface of Collection.
+--> If we want to represent a group of individual objects as a single entity where duplicates are allowed and insertion
+    order must be preserved tehn we should go for List.
+--> We can differentiate duplicates by using index.
+--> We can preserve insertion order by using index,hence index play very important role in list interface.
+
+List interface specific methods:
+---------------------------------
+void add(int index, Object o)
+boolean addAll(int index,Collectionc)
+object get(int index)
+object remove(int index)
+object set(int index, Object new)
+int indexOf(Object o)
+int lastIndexOf(Object o)
+ListIterator listIterator()
+
+
+ArrayList Class:
+-----------
+--> The underlined data structure resizable Array or Growable Array
+--> Duplicates are allowed
+--> Insertion Order is preserved
+--> Heterogeneous objects are allowed [except TreeSet and TreeMap everywhere hetrogeneous objects are allowed].
+--> Null insertion is possible. 
+
+ArrayList Constructors:
+------------------------
+1. ArrayList al = new ArrayList()
+   Creates an emplty Arraylist object with default initial capacity 10.
+   Once ArrayList reaches its map capacity a new ArrayList will be created with new capacity = (currentcapacity * 3/2)+1.
+
+2. ArrayList al = new ArrayList(int initialCapacity);
+
+3. ArrayList al = new ArrayList(Collection c);
+
+Example:
+import java.util.*;
+Class ArrayListDemo{
+  public static void main(String[] args) { 
+     ArrayList l = new ArrayList();
+     l.add("A");
+     l.add(10);
+     l.add(null);
+     l.add("A");
+     sopn(l); //[A,10,null,A]
+     l.add("2","m");
+     l.add("N");
+     sopln(l); // [A,10,m,A,N]
+  }
+}
+
+
+Note:
+--> Usually we can use Collections to hold and transfer Objects from one place to another place, to provide support for this 
+    requirement every Collection already implements Serializable and Cloneable interfaces.
+--> ArrayList and Vector classes implements RandomAccess interface so that we can access any Random elements with the same speed.
+--> Hence if our frequent operation is retrival operation then ArrayList is the best choice.
+
+RandomAccess:
+--> Present in java.util package.
+--> It doesn't contain any methods and it is a Marker interface.
+
+Ex:
+---
+ArrayList l1 = new ArrayList();
+LinkedList l2 = new LinkedList();
+sopln(l1 instanceOf Serializable); //true
+sopln(l2 instanceOf Cloneable); //true
+sopln(l1 instanceOf RandomAccess); //true
+sopln(l2 instanceOf RandomAccess); //false
+
+when to use aaraylist:
+----------------------
+--> ArrayList is best choice if our frequent operation is retrival operation (Because ArrayList implements RandomAccess interfaces)
+--> ArracyList is the worst choice if our frequent operation is insertion or deletion in the middle (Because several shift operation
+    are require)
+
+Difference Between ArrayList and vector:
+-----------------------------------------
+--> Every method present in Arraylist is non synchronize
+    Every method present in vector is synchronize
+
+--> At a time multiple thread are allowed to operate on ArrayList Object and hence ArrayList is not thread safe
+    At a time only one thread is allowed to operate on Vector, object is thread safe
+
+--> Threds are not required to wait to operate on ArrayList, hence relatively performance is high.
+    Threds are required to wait to operate on Vector object and hence relatively performance is low.
+
+--> Introduced in 1.2 version and it is non legacy class(ArrayList)
+    Introduced in 1.0 version and it is a legacy class(Vector)
+
+
+How to get Synchronized version of Arraylist:
+-----------------------------------------------
+--> By default ArrayList is Object is non-synchronized but we can get synchronized version of ArrayList by using Collection class
+    syschronizedList() method.
+ 
+    public static List synchronizedList(List l)
+
+    Non-Synchronized
+      ArrayList l1 = new ArrayList();
+   
+    Synchronized
+      List l = Collections.synchronizedList(l1);
+
+--> Similarly we can get Synchronized version of Set, Map Objects by using the following methods of Collection class.
+     
+    public static Set synchronizedSet(Set s);
+    public static Set SynchronizedMap(Map m); 
+
+
+LinkedList Class:
+------------
+--> The underlying data structure is Double Linked List.
+--> Insertion order is preserved.
+--> Duplicates are allowed.
+--> Heterogeneous Objects are allowed.
+--> Null isertion is possible.
+--> LinkedList implements Serializable and Cloneable inteface but not RandomAccess inteface.
+--> LinkedList is the best choice if our frequent operation is insertion or deletion in the middle.
+--> LinkedList is the worst choice if our frequent operation is retrival opearion.
+
+--> Usually we can use LinkedList to implement stacks and queues to provide support for this requirement LinkedList class
+    defines following specific methods.
+
+   a) void addFirst();
+   b) void addLast();
+   c) Object getFirst();
+   d) Object getLast();
+   e) Object removeFirst();
+   f) Object removeLast();
+
+Construtor:
+-----------
+1) LinkedList l = new LinkedList();
+
+--> Create an empty LinkedList Object
+
+2) LinkedList l = new LinkedList(Collection c);
+
+--> Creates an equivalent LinkedList Object for the given Collection
+
+
+Ex. 
+----
+import java.util.*;
+
+class LinkedListDemo {
+  pblic static void main(String[] args) {
+    LinkedList l = new LinkedList();
+    l.add("durga");
+    l.add(30);
+    l.add(null);
+    l.add("durga");
+    l.set(0,"software");
+    l.add(0,"venkey");
+    l.addFirst("ccc");
+    sopln(l);//[ccc,venkey,software,30,null]
+
+  }
+}
+
+Difference between LinkedList and AraryList:
+----------------------------------------------
+--> ArrayList is the best choice if our frequent operation is retrival
+    LinkedList is the best choice if our frequent operation is insertion
+    deletion
+
+--> ArrayList is the worst choice if our frequent operation is insertion 
+    or deletion
+    LinkedList is the worst choice if our frequent operation is retrieval
+    operation
+
+--> Underlying data structure for ArrayList is resizable or growable array.
+    Underlyinh data structure is Double Linked List.
+
+--> AraryList implements RandomAccess interface
+    LinkedList doesn't implement RandomAccess interface
+
+
+Vector Class:
+--------------
+--> The underlying data structure for the vectoe is resizable array or growabel array
+--> Duplicate objects are allowed
+--> Insertion order are preserved
+--> 'null' insertion is possible
+--> Heterogeneous objects are allowed
+--> Vector class implemented Serializable, Cloneable and RandomAccess Interfaces.
+--> Most of the methods present in vector are synchronized. Hence Vector object is Thread-safe.
+--> Best choice if the frequent operation is retrival.
+   
+Specific Methods:
+-----------------
+For adding objects:
+  
+  add(Object o)             [From Collection -List(I)]
+  add(int index, Object o)  [From List]
+  addElement(Object o)      [From Vector]
+
+For removing objects:
+  
+  Remove(Object o)          [From Collection]
+  removeElement(Object o)   [From Vector]
+  remove(int index)         [From List]
+  RemoveElementAt(int index)[From Vector]
+  clear()                   [From Collection]
+  removeAllElements()       [From Vector]
+
+For Accessing Elements:
+
+  Obejct get(int index)      [From Collection]
+  Object elementAr(int index)[From Vector]
+  Object firstElement()      [From Vector]
+  Object lastElement()       [From Vector]
+
+Other Methods:
+    
+   int size();
+   int capacity()'
+   Enumeration elements();
+
+Constructor:
+
+1) Vector v = new Vector();
+
+--> Create an empty vector object with default initial capacity 10,
+    once vector reaches it's max capacity a new vector Object will be
+    Created with new capacity = 2 * current capacity
+
+2) Vector v = new Vector(int initialCapacity);
+
+--> Creates an empty Vector Object with specified initial capacity
+
+3) Vector v = new Vector(int initialCapacity, int increamentalCapacity);
+
+4) Vector v = new Vector(Collection c);
+
+--> Creates an equivalent Vector Object for the given Collection
+
+Ex:
+----
+import java.util.*;
+class VectorDemo {
+  public static void main(String arg[]) {
+    Vector v = new Vector();
+    sopln(v.capacity()); //[10]
+    for(int i = 0; i<10; i++){
+      v.addElement(i);
+    }
+    sopln(v.capacity()); //[10]
+    v.addElement("A");
+    sopln(v.capacity()); //[20]
+    sopln(v); [0,1,2,3,4,5,6,7,8,9,A]
+  }
+}
+
+Stack Class:
+-------------
+--> It is a child class of Vector
+--> Is is specially designed class for Last In First Out order(LIFO)
+
+Constructor:
+------------
+   Stack s = new Stack();
+
+Stack methods:
+--------------
+1) Object push(Object obj);
+   - For inserting an object to the stack
+
+2) Object pop();
+   - To removes and returns top of the stack
+
+3) Object peak();
+   - To returns the top of the stack without removal of object
+
+4) int search(Object obj);
+   - If the specified object is available it returns its offset from top of 
+     the stack.
+   - If the object is not available then it returns -1
+
+5) Object pop();
+   - For inserting an object to the stack
+
+Ex:
+----
+import java.utli.*;
+class StackDemo {
+  public static void main(String[] args) {
+    Stack s = new Stack();
+    s.push("A");
+    s.push("B");
+    s.push("C");
+    sopln(s); //[A,B,C]
+    sopln(s.search("A"));  //[3]
+    sopln(s.search("X"));  //[-1]
+  }
+}
+
+Three Cursors of Java:
+-----------------------
+--> If we want to retrieve Objects one by one from the Collection, then we should go for Cursors.
+--> There are three types of cursors are available in java.
+1) Enumeration
+2) Iterator
+3) ListIterator
+
+1) Enumeration:
+---------------
+--> Introduced in 1.0 version(for lagacy0.
+--> We can use Enumeration to get Objects one by one from the old Colletion Objects(Legacy Collections).
+--> we can create Enumeration Object by using elements() method of Vector class.
+     public Enumeratin elements();
+Ex:
+----
+  Enumeration e = v.elements();
+
+--> Enumeration defines the following two methods:
+   - public boolean hasMoreElemetns();
+   - public Object nextElement();
+
+Ex:
+----
+import java.util.*;
+class EnumerationDemo{
+  public static void main(String[] args) {
+    Vector v = new Vector();
+    for(int i=0; i<=10; i++) {
+       v.addElement(i);
+    }
+    sopln(v); //[0,1,2,3,4,5,6,7,8,9,10\
+    Enumeration e = v.elements();
+    while(e.hasMoreElements()) {
+     Integer i = (Integer) e.nextElement();
+     if((i%2)===0) 
+       sopln(i);  //[0,2,4,6,8,10]
+    }
+  }
+}
+
+
+Limitation of Enumeration:
+---------------------------
+--> Enumeration concept is applicable only for lagacy classes and hence it is not a universal cursor.
+--> By using Enumeration we can get only read access and we can't perform remove operation.
+
+Note: To overcome above limitations of Enumeration we should go for Iterator.
+
+2) Iterator:
+-------------
+--> We can apply Iterator concept for any Collection object hence it is universal cursor.
+--> By using Iterator we can perform both read and remove operations.
+--> We can create Iterator Object by using iterator() method of Collection interface.
+     public Iterator iterator();
+
+Ex:
+---
+   Iterator itr = C.iterator();
+   - where C is any Collection Object
+
+Methods in Iterator:
+---------------------
+--> Iterator interface defines the follwing three methods.
+    1. public boolean hasNext()
+    2. public Object next()
+    3. public void remove()
+
+Ex:
+---
+import java.util.*;
+class IteratorDemo {
+  public static void main(String[] args) {
+    ArrayList l = new ArrayList();
+    for(int i=0; i<=10; i++) {
+     l.add(i);
+    }
+    sopln(l); // [0,1,2,3,4,5,6,7,8,9,10]
+    Iterator itr = l.iterator();
+    while(itr.hasNext()) {
+      Integer i = (Integer)itr.next();
+      if((i%2)==0)
+       sopln(i); //0,2,4,6,8,10
+      else
+       itr.remove();
+    } 
+    sopln(l); //0,2,4,6,8,10
+  }
+}
+
+limitation of Iterator:
+------------------------
+1) By using Enumeration and Iterator we can move only towards forward direction
+   and we can't move to the backward direction, and hence these are single 
+   direction cursors.
+2) By using Iterator we can perform only read and remove operations and we can't 
+   perform replacement of new Objects.
+
+Note: To overcome above limitaions of Iterator we should go for ListIterator.
+
+
+3) ListIterator:
+----------------
+--> By using ListIterator we can move either to the forward direciton or to the 
+    backward direction, and hence ListIterator is biderectional cursor.
+--> By using ListInterator we can perform replacement and addition of new Objects
+    in addition to read and remove operations.
+--> We can create ListIterator Object by using listIterator() method of List interface.
+    public ListIterator listIterator();
+
+Ex:
+---
+      ListIterator itr = l.listIterator();
+      - where l is any List Object
+
+Methods in ListIterator:
+-------------------------
+--> ListIterator is the child interface of Iterator and hence all methods of Iterator by
+    default available to ListIterator.
+--> ListIterator Interface defines the following 9 methods
+   -forward direction 
+    1) public boolean hasNext()
+    2) public void next()
+    3) public int nextIndex()
+   -backward direction 
+    4) public boolean hasPrevious()
+    5) public void Previous()
+    6) public int previousIndex()
+   -other capacity methods
+    7) public void remove()
+    8) public void set(Object new)
+    9) public void add(Object new)
+
+
+Ex:
+---
+import java.util.*;
+class ListIteratorDemo {
+  public static void main(String[] args) {
+   LinkedList l = new LinkedList();
+   l.add("Bala");
+   l.add("venkey");
+   l.add("chiru");
+   l.add("nag")l;
+   sopln(l); //[Bala,venkey,chiru,nag]
+   ListIterator itr = l.listIterator();
+   while(itr.hasNext()){
+     String s = (String)itr.next();
+     if(s.equals("venkey")){
+        itr.remove();
+     }
+     else if(s.equals("nag")){
+        itr.add("chaitu");
+     }
+     else if(s.equals("chiru")){
+        itr.set("charan");
+     }
+     sopln(l); //[Bala,charan,nag,chaitu]
+
+   }
+  }
+}
+Note: ListIterator is the most powerful cursor but its limitation is, it is
+      applicable only for List implemented class objects and it is not a 
+      universal cursor.
+
+Comparison of the three Cursors of Java:
+-----------------------------------------
+
+  Properties       |  Enumeration    |   Iterator            |    ListIterator
+--------------------------------------------------------------------------------------------------------------
+1) Applicable for  |Only legacy class|Any Collection classes |Only List classes               
+2) Movement        |Only forward     |Only forward direction |Both forward and backward 
+                   |direction(single |(single direction)     |direction(biderectional
+                   |direction)       |                       |
+3) Accessability   |Only read access |Both read and remove   |Read,Remove,replace and addition of new objects
+4) How to get it?  |By using elemetns|Bt using iterator() met|By using listIterator() method of List interface
+                   |() method of vect|od of collection interf|
+                   |or class         |ace                    | 
+5) methods         |2 methods        |3 methods              |9 methods
+                   |hasMoreElement() |hasNext()              |
+                   |nextElement()    |next()                 |
+                   |                 |remove()               |
+6) Is it legacy?   |"yes"(1.0v)      |"no"(1.2v)             |"no"(1.2v)
+
+Implementaion Classes of the three Cursor of java:
+---------------------------------------------------
+import java.util.*;
+class CursorDemo{ 
+  public static void main(String[] args){
+    Vector v = new Vector();
+    Enumeration e = v.element();
+    Iterator itr = v.iterator();
+    ListIterator ltr = v.listIterator();
+    sopln(e.getClass().getName()); // java.util.Vector$1
+    sopln(itr.getClass().getName()); // java.util.Vector$ltr
+    sopln(ltr.getClass().getName()); //java.util.Vector$ListLtr
+  }
+}
+
+
+HashSet:
+--------
+Collection(1.2v)
+----Set(1.2v)
+    ---HashSet(1.2v) 
+       ----LinkedHashSet(1.4v)
+    ---SortedSet(1.2v)
+        ----NavigableSet(1.6v)
+             ----TreeSet(1.2)
+
+--> Set is child interface of Collection
+--> If we want to represent a group of individual objects as a single
+    entity, where duplicates are not allowed and insertion order is not 
+    preserved then we should go for Set.
+--> Set interface doesn't contain any new methods. So we have to use only
+    Collection interface methods.
+
+HashSet:
+--------
+--> Underlying data structure is HashTable.
+--> Duplicates are not allowed. If we are trying to insert duplicates, we
+    won't get any compiletime or runtime errors. add() method simply return
+    false.
+--> Insertion order is not preserved and all objects will be inserted based
+    on hash-code of objects.
+--> Heterogeneous objects are allowed.
+--> "null" insertion is possible
+--> implements Serializable and cloneable interface but not RandomAccess
+--> HashSet is the best choice, if our frequent is Search operation
+
+Construtors:
+-------------
+1) HashSet h = new HashSet();
+  -Creates an empty HashSet object with default initial capacity 16 & default 
+   fill ratio(load factor) 0.75
+
+2) HashSet h = new HashSet(int initialCapacity);
+   -Creates an empty HashSet object with specified initial capacity & default 
+    fill ratio 0.75
+
+3) HashSet h = new HashSet(int initialCapacity,float loadFactor);
+   -Creates an empty HashSet object wuth specified initial capacity & specified
+    load factor (or fill ratio)
+
+4) HashSet h = new HashSet(Collection c);
+   -for inter conversion between collection obejcts.
+
+Load Factor / Fill Ratio:
+-------------------------
+--> After loading the how much factor, a new HashSet object will be created, that
+    factor is calles as load factor or fill ratio.
+
+Ex:
+---
+import java.util.*;
+class HashSetDemo {
+  public static void main(String[] args){
+    HashSet h = new HashSet();
+    h.add("B");
+    h.add("C");
+    h.add("D");
+    h.add("Z");
+    h.add(null);
+    h.add(10);
+    sopln(h.add("Z")); // false
+    sopln(h);//[null,D,B,C,10,Z]
+  }
+}
+  
+
+LinkedHashSet:
+--------------- 
+
