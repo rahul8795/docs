@@ -1357,6 +1357,256 @@ public class Test {
 
 }
 
+Hiberante: 
+-----------
+Example on AWT-Hiberante Intergration:
+
+EmployeeSearchFrame.java
+-------------------------
+package com.cts.ui;
+
+import java.awt.Button;
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.Frame;
+import java.awt.Graphics;
+import java.awt.Label;
+import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+import com.cts.factory.EmployeeServiceFactory;
+import com.cts.pojo.Employee;
+import com.cts.service.EmployeeService;
+import com.cts.service.EmployeeServiceImpl;
+
+public class EmployeeSerchFrame extends Frame implements ActionListener {
+	Label l;
+	TextField tf;
+	Button b;
+	Employee emp;
+	
+    public EmployeeSerchFrame() {
+		this.setVisible(true);
+		this.setSize(500,500);
+		this.setTitle("Employee Serch Frame");
+		this.setLayout(new FlowLayout());
+		this.setBackground(Color.green);
+		this.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent we){
+				System.exit(0);
+			}
+		});
+		
+		l = new Label("Employee Number");
+		tf = new TextField(20);
+		b = new Button("Search");
+		b.addActionListener(this);
+		
+		Font font = new Font("consolas", Font.BOLD, 20);
+		l.setFont(font);
+		tf.setFont(font);
+		b.setFont(font);
+		
+		this.add(l);
+		this.add(tf);
+		this.add(b);
+		
+		
+	}
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		try {
+			int eno = Integer.parseInt(tf.getText());
+			EmployeeService empService = EmployeeServiceFactory.getEmployeeService();
+			emp = empService.search(eno);
+			repaint();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	@Override
+	public void paint(Graphics g) {
+		Font font = new Font("consolas", Font.BOLD, 25);
+		g.setFont(font);
+		
+		if(emp == null){
+			g.drawString("Employee Not Exited", 50, 250);
+		}else{
+			g.drawString("Employee Number  :"+ emp.getEno(), 50, 200);
+			g.drawString("Employee Name    :"+ emp.getEname(), 50, 250);
+			g.drawString("Employee Salary  :"+ emp.getEsal(), 50, 300);
+			g.drawString("Employee Address :"+ emp.getEaddr(), 50, 350);
+		}
+	}
+
+}
+
+
+EmployeeService.java
+---------------------
+package com.cts.service;
+
+import com.cts.pojo.Employee;
+
+public interface EmployeeService {
+	public Employee search(int eno);
+}
+
+
+
+EmployeeServiceImpl.java
+-------------------------
+package com.cts.service;
+
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.classic.Session;
+
+import com.cts.pojo.Employee;
+import com.cts.util.HibernateUtil;
+
+public class EmployeeServiceImpl implements EmployeeService {
+	Employee emp;
+  
+	public Employee search(int eno) {
+		try {
+			SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+			Session session = sessionFactory.openSession();
+			emp = (Employee) session.get(Employee.class,eno);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return emp;
+	}
+}
+
+EmployeeServiceFactory.java
+-----------------------------
+package com.cts.factory;
+
+import com.cts.service.EmployeeService;
+import com.cts.service.EmployeeServiceImpl;
+
+public class EmployeeServiceFactory {
+	private static EmployeeService empService;
+	static{
+		empService = new EmployeeServiceImpl();
+	}
+	public static EmployeeService getEmployeeService() {
+		return empService;
+	}
+}
+
+
+Employee.java
+---------------
+package com.cts.pojo;
+
+public class Employee {
+	private int eno;
+	private String ename;
+	private float esal;
+	private String eaddr;
+	public int getEno() {
+		return eno;
+	}
+	public void setEno(int eno) {
+		this.eno = eno;
+	}
+	public String getEname() {
+		return ename;
+	}
+	public void setEname(String ename) {
+		this.ename = ename;
+	}
+	public float getEsal() {
+		return esal;
+	}
+	public void setEsal(float esal) {
+		this.esal = esal;
+	}
+	public String getEaddr() {
+		return eaddr;
+	}
+	public void setEaddr(String eaddr) {
+		this.eaddr = eaddr;
+	}
+}
+
+Employee.hbm.xml
+-------------------
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.cts.pojo.Employee" table="emp1">
+		<id name="eno"/>
+		<property name="ename"/>	
+		<property name="esal"/>
+		<property name="eaddr"/>
+		</class>
+</hibernate-mapping>
+
+hiberante.cfg.xml
+-------------------
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
+		<property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:xe</property>
+		<property name="hibernate.connection.username">system</property>
+		<property name="hibernate.connection.password">root</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.OracleDialect</property>
+		<property name="hibernate.show_sql">true</property>
+		<mapping resource="com/cts/resources/Employee.hbm.xml"/>
+	</session-factory>
+</hibernate-configuration>
+
+hibernateUtil.java
+-------------------
+package com.cts.util;
+
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+public class HibernateUtil {
+	private static SessionFactory sessionFactory;
+	static{
+		try{
+			Configuration config = new Configuration();
+			config.configure("/com/cts/resources/hibernate.cfg.xml");
+			sessionFactory = config.buildSessionFactory();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	public static SessionFactory getSessionFactory(){
+		return sessionFactory;
+	}
+}
+
+
+Test.java
+----------
+package com.cts.test;
+
+import com.cts.ui.EmployeeSerchFrame;
+
+public class Test {
+
+	public static void main(String[] args) {
+		EmployeeSerchFrame frame = new EmployeeSerchFrame();
+	}
+
+}
 
 
 
