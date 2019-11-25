@@ -1610,3 +1610,182 @@ public class Test {
 
 
 
+
+
+
+Struts-Hibernate:
+--------------------
+--> Struts is a MVC based web framework, it will provide very good env to prepare and 
+    execute Web Applications.
+--> Struts Framework is providing a standard template to desing web applications.
+--> Struts Framework has define the locations where to use Servlets, JSPs, Java Beans,...
+--> Struts Framework has defined a standard flow of execution in web applcaiton.
+--> Struts Framework is providing generic Sevices like Exception handling, Validations,
+    Tiles, Connection pooling, I18N,.....
+--> Struts Framework is able to simlify and Accelerate web application development.
+--> Struts Framework is able to reduce application development time.
+--> Struts Framework is able to improve Productivity.
+--> Struts Framework is a semi implemented applications, because, it has provided 70% of the 
+    common implementation as predefined.
+
+Struts Elements:
+-----------------
+1. View or Presentation 
+2. web.xml [Deployment Descripter]
+3. ActionServlet [Front Controller]
+4. Action [Controller Component]
+5. ActionForm [FormBean]
+6. Struts Configuration File [struts-config.xml]
+
+1. View or Presentation:
+-------------------------
+1. Informational View: success.html,failure.html
+2. Form based view: loginform.html
+
+Ex:
+---
+<html>
+  <body>
+    <form method="POST" action="login.do">
+      user name<input type="text" name="uname"/><br>
+      password<input type="password" name=:upwd"/><br>
+      <input type="submit" value="Login" />
+    </form>
+  </body>
+</html>
+
+
+2. web.xml [Deployment Descripter]:
+------------------------------------
+--> It will include ActionServlet class configuration.
+<web-app>
+  <servlet>
+     <servlet-name>as</servlet-name>
+     <servlet-class>org.appche.action.ActionServlet</servlet-class>
+     <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+     <servlet-name>as</servlet-name>
+     <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+</web-app>
+
+
+
+3. ActionServlet [Front Controller]:
+-------------------------------------
+--> It is a fornt controller, its main resopnsibilities are,
+1. Get Req from client.
+2. Indentifying ActionForm class and Action class names and locations through struts
+   configuration file.
+3. It will load and instantiate ActionForm class.
+4. It will store all request paramerters, that is, form data in ActionForm object.
+5. It will load and instantiate Action class.
+6. Executing business logic by calling execute method.
+7. It will identify the target forward component[page] by using ActionForward object
+   through Struts Configuartion file.
+8. It will forward request to the target page and make the target page to generate 
+    response to client.
+
+--> It is a predefined component provided by Struts framework as
+    "org.appche.struts.action.ActionServlet"
+
+
+4. Action [Controller Component]:
+-----------------------------------
+--> It is an user defined component in Struts framework, it able to manage application
+    logic in the form of execute() method inorder to execute by receiving request from
+    client.
+Steps:
+-------
+1. Declare a user defined class
+2. Extends user defined class from org.appche.struts.action.Action ablstract class.
+3. In user defined override either of the following method with appl logic. 
+    public ActionForward execute(ActionMapping mapping,
+                                 ActionForm form,
+                                 HttpServletRequest request,
+                                 HttpServletResponse response)throws ServletException, IOException
+               or
+
+   public ActionForward execute(ActionMapping mapping,
+                                 ActionForm form,
+                                 HttpServletRequest request,
+                                 ServletResponse response)throws ServletException, IOException
+
+
+public class LoginAction extends Action {
+      public ActionForward execute(ActionMapping mapping,
+                                 ActionForm form,
+                                 HttpServletRequest request,
+                                ServletResponse response)throws ServletException, IOException{
+        LoginActionForm loginForm = (LoginActionForm)form;
+        String uname = loginForm.getUname();
+        Stirng upwd = loginForm.getupwd();
+    
+        String status = "";
+        if(uname.equals("durga") && upwd.equals("durga")) {
+          status = "success";
+        }else {
+          status = "failure"; 
+        }
+      }
+      return mapping.findForward(status); 
+}
+
+5. ActionForm [FormBean]:
+--------------------------
+--> It is Java Bean class contains properties and serXXX() and getXXX()
+    methods, its main responsibilities are to manage form data at server 
+    side inorder to perform data validations, conversions,.....
+
+Steps:
+------
+a) declare an user defined class.
+b) Ecxtend org.appche.struts.action.ActionForm to user defined class.
+c) declare properties in user defined class with setXXX() methods and getXXX()
+   methods, which must be same as the form properties defined in user forms.
+
+Ex.
+------
+piblic class LoginActionForm extends ActionForm {
+   private String uname;
+   private String upwd;
+   setXXX() and getXXX();
+}
+
+
+
+6. Struts Configuration File [struts-config.xml]:
+-------------------------------------------------
+--> Its main itention is to provide all configuration details like,
+1) ActionForm configurations.
+2) Action class configurations.
+3) Forwards configurations.
+4) Exceptions configurations
+5) Resources Configurations
+   ------
+   ------
+Ex: struts-config.xml
+----------------------
+<struts-config>
+  <form-beans>
+    <form-bean name="loginForm" type="com.cts.form.LoginActionForm" />
+  </form-beans>
+  <action path="/login" name="loginForm" type="com.cts.actions.LoginAction">
+     <forward name="success" path="/success.html" />
+     <forward name="failure" path="/fialure.html" /> 
+  </action>
+</struts-config>
+
+
+Steps to prepare Struts Applicatons:
+-------------------------------------
+1. Prepare Dynamic Web Project.
+2. Copy all Sturts JAR file in web appl "lib" folder.
+3. Prepare Htmls and JSP pages.
+4. Prepare ActionForm class.
+5. Prepare Action Class.
+6. Prepare Struts configuration file.
+7. Configure ActionServlet in web.xml file.
+
+
