@@ -1780,6 +1780,7 @@ Ex: struts-config.xml
 
 Steps to prepare Struts Applicatons:
 -------------------------------------
+0. Download Struts JARs form apache website.
 1. Prepare Dynamic Web Project.
 2. Copy all Sturts JAR file in web appl "lib" folder.
 3. Prepare Htmls and JSP pages.
