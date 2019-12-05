@@ -1,0 +1,158 @@
+                   ---------------
+*******************WEB DEVELOPMENT*****************
+                   ---------------
+
+Agenda:
+--------
+1) HTML
+2) CSS
+3) Javascript
+4) jQuery
+5) Angular 8
+6) React JS
+7) NodeJS
+8) MEAN Stack Application
+9) MERN Stack Application
+
+                    --------
+********************01) HTML******************
+                    --------
+
+What is HTML:
+------------
+HTML is the standard markup language for creating Web pages.
+It stands for Hyper Text Markup Language and describes the 
+struture of web pages using markup.
+
+Structure of HTML:
+------------------
+<html>
+  <head>
+    <title>page title</title>
+  </head>
+  <body>
+   -------
+   --------
+   use different html tag
+   -------
+   -------
+  </body>
+</html>
+
+
+<!Doctype> Declaration:
+------------------------
+- The <!DOCTYPE> declaration represents the document type, and
+  helps browsers to display web page corrctly.
+- It must only appear once, at the top page before any HTML tags
+- The <!DOCTYPE> declaration is not case sensitrive.
+
+HTML has :
+----------
+- Elements
+- Attribute
+- Style & Text Formatting
+- Links & Images
+- Lists
+- Table
+- Forms & Buttons
+
+		------							
+****************02 CSS*********************
+                ------
+
+What is CSS:
+------------
+- Cascading Style Sheet
+- Controls how HTML is displayed
+- Developed and maintained by W3C
+- Solved problems in HTML3.2
+
+CSS Sysntax:
+-----------
+Basic CSS Syntax:
+-----------------
+Selector {
+  property1: value1;
+  property2: value2;
+}
+
+Inlcuding CSS to your HTML:
+---------------------------
+
+<link rel="stylesheet" type="text/css" href="style.css">
+
+Inline CSS:
+-----------
+<tag style="property: value"></tag>
+
+Internal CSS:
+-------------
+<style>
+  Selector {
+  property1: value1;
+  property2: value2;
+  }
+</style>
+
+CSS Selectors:
+--------------
+
+Selector        | Use
+-------------------------------------------
+*		| All elements
+div		| All divs
+div,p		| All divs and paragraphs
+div p		| All paragraph inside divs
+div > p		| All p tags, one level deep in div
+div + p		| p tags immediately after div
+div ~ p		| p tags preceded by div
+.classname	| all elements with class
+#idename	| element with ID
+div.classname	| divs with certain classname
+div#name	| div with certain ID
+#idname*	| all elements inside #idname
+----------------------------------------------------
+
+Pseudo Selector:
+Attribute Selector:
+
+CSS BOX Model:
+---------------
+Margin , Border, Padding, Content
+
+CSS Units:
+-----------
+Pixel : represents pixel on a device
+Points : 71 points equals 1 inch
+Ems : 1em = current font size
+Percent : Current font size is 100%
+
+
+                        -------------
+************************03 Javascript*********************
+                        -------------
+
+Agenda:
+------
+- What is Javascript?
+- Why learn Javascript?
+- Javascript Fundamentals
+
+
+What is Javascript:
+-------------------
+Javascript is a scripting language that allows you to implement
+complex things on Webpages.
+
+- Web page more intractive
+- Interpreted language'
+- Runs on the client's computer
+
+
+What Can Javascript do?
+-----------------------
+- Web application
+- Smart wathces
+- Website
+- Games
